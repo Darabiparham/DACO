@@ -1,0 +1,4469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>DACO Storymaker Pro</title>
+    <meta name="description" content="Create beautiful text overlays on your images with Persian, English and Arabic support">
+    <meta name="theme-color" content="#ff6e41">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="DACO Storymaker Pro">
+    
+    <!-- FIXED: Proper Orientation Handling -->
+    <meta name="screen-orientation" content="portrait">
+    <meta name="orientation" content="portrait-primary">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- DACO App Icons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=32&h=32">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=16&h=16">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=180&h=180">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=152&h=152">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=144&h=144">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=120&h=120">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=114&h=114">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=76&h=76">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=72&h=72">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=60&h=60">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=57&h=57">
+    
+    <!-- FIXED: Enhanced Font Preloading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.fontcdn.ir" crossorigin>
+    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Lalezar:wght@400&family=Markazi+Text:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- FIXED: Critical Image Preloading -->
+    <link rel="preload" as="image" href="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=512&h=512" fetchpriority="high">
+    
+    <style>
+        :root {
+            /* FIXED: Brand Color System */
+            --green-main: #1b3b14;
+            --green-dark: #152e11;
+            --cream-light: #fff3e3;
+            --orange-main: #ff6e41;
+            --orange-dark: #c55633;
+            --text-color-light: #152e11;
+            --bg-color-light: #fff3e3;
+            --panel-bg-light: rgba(255, 243, 227, 0.95);
+            --border-color-light: rgba(21, 46, 17, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --icon-color-light: #152e11;
+            --placeholder-color-light: rgba(21, 46, 17, 0.4);
+            --glass-blur: 5px;
+            
+            /* FIXED: Layout Variables - Better PWA spacing */
+            --header-height: 120px;
+            --footer-height: 120px;
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        .night-mode {
+            /* FIXED: Dark Theme with Brand Colors */
+            --green-main: #fff3e3;
+            --green-dark: #152e11;
+            --cream-light: #fff3e3;
+            --orange-main: #ff6e41;
+            --orange-dark: #cc7000;
+            --text-color-light: #fff3e3;
+            --bg-color-light: #152e11;
+            --panel-bg-light: rgba(21, 46, 17, 0.95);
+            --border-color-light: rgba(255, 243, 227, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --icon-color-light: #fff3e3;
+            --placeholder-color-light: rgba(255, 243, 227, 0.7);
+        }
+        
+        .night-mode #appTitle,
+        .night-mode .subtitle {
+            color: var(--cream-light);
+        }
+
+        /* FIXED: Orientation Lock - NO TRANSFORM HACKS */
+        @media screen and (orientation: landscape) {
+            .orientation-lock-overlay {
+                display: flex !important;
+            }
+            
+            .main-app-container {
+                display: none !important;
+            }
+        }
+
+        /* FIXED: Orientation Lock Overlay */
+        .orientation-lock-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--orange-main);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            color: white;
+            text-align: center;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        .orientation-lock-message {
+            padding: 30px;
+            max-width: 90%;
+        }
+
+        .orientation-lock-message svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            animation: rotatePhone 2s infinite ease-in-out;
+        }
+
+        .orientation-lock-message h2 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px 0;
+            font-weight: 700;
+        }
+
+        .orientation-lock-message p {
+            font-size: 1.1rem;
+            margin: 0;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        @keyframes rotatePhone {
+            0% { transform: rotate(90deg); }
+            50% { transform: rotate(0deg); }
+            100% { transform: rotate(90deg); }
+        }
+
+        /* FIXED: Base Layout with Glass Effect */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, var(--bg-color-light) 0%, rgba(0, 0, 0, 0.8) 150%);
+            color: var(--text-color-light);
+            transition: background 0.3s ease, color 0.3s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .night-mode html, 
+        .night-mode body {
+            background: linear-gradient(135deg, var(--bg-color-light) 0%, rgba(255, 243, 227, 0.05) 100%);
+        }
+
+        .main-app-container {
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* FIXED: Professional Loading Screen */
+        .daco-loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--orange-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: all 0.8s ease;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .daco-loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+
+        .daco-logo-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            animation: dacoLogoFloat 3s ease-in-out infinite;
+        }
+
+        .daco-logo {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .daco-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 15px;
+        }
+
+        .daco-logo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: logoShine 3s ease-in-out infinite;
+        }
+
+        .loading-text {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-top: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            animation: textPulse 2s ease-in-out infinite;
+        }
+
+        .loading-subtitle {
+            font-family: 'Vazirmatn', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 8px;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes dacoLogoFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        @keyframes logoShine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        /* FIXED: Enhanced Glass Header */
+        .header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 8px 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2000;
+            height: var(--header-height);
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 16px;
+            padding-top: calc(var(--safe-area-top) + 8px);
+        }
+
+        .night-mode .header {
+            background: rgba(21, 46, 17, 0.85);
+            border-bottom: 1px solid rgba(255, 243, 227, 0.2);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        /* FIXED: Header Controls */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-controls-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-title-section {
+            text-align: center;
+            flex-grow: 1;
+        }
+
+        #appTitle {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 0;
+            color: var(--green-main);
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            margin: 0;
+            color: var(--green-main);
+            font-size: 0.6rem;
+            opacity: 0.8;
+            line-height: 1;
+        }
+
+        .header-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color-light);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: var(--text-color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .header-btn:hover {
+            background: rgba(255, 110, 65, 0.2);
+            border-color: var(--orange-main);
+            transform: scale(1.05);
+        }
+
+        .header-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--icon-color-light);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .delete-image-btn {
+            background: rgba(255, 68, 68, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: #ff4444;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .delete-image-btn:hover {
+            background: rgba(255, 68, 68, 0.25);
+            border-color: #ff4444;
+            transform: scale(1.05);
+        }
+
+        .delete-image-btn svg {
+            width: 20px;
+            height: 20px;
+            stroke: #ff4444;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* FIXED: Main Content */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            margin-top: var(--header-height);
+            margin-bottom: var(--footer-height);
+        }
+
+        /* FIXED: Canvas Container */
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            min-height: 0;
+            touch-action: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            touch-action: manipulation;
+            cursor: grab;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100%;
+            max-height: 100%;
+            transform-origin: center center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-color-light);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .canvas-wrapper:active {
+            cursor: grabbing;
+        }
+
+        .guide-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 15;
+            overflow: hidden;
+            border-radius: 18px;
+        }
+
+        .guide-line {
+            position: absolute;
+            background: var(--orange-main);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .guide-line.vertical {
+            width: 2px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+
+        .guide-line.horizontal {
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+        }
+
+        .guide-line.active {
+            opacity: 0.8;
+        }
+        
+        /* FIXED: Enhanced Plus Icon Visibility */
+        #photo-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: var(--placeholder-color-light);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            z-index: 10;
+            transition: opacity 0.3s;
+            border-radius: 18px;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .night-mode #photo-placeholder {
+            color: var(--placeholder-color-light);
+            background: rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-frame {
+            position: absolute;
+            border: 3px solid var(--orange-main);
+            border-radius: 15px;
+            pointer-events: none;
+            z-index: 5;
+            opacity: 0;
+            transition: all 0.4s ease-out;
+            box-shadow: 0 0 20px rgba(255, 110, 65, 0.4);
+            animation: selectedTextPulse 2s ease-in-out;
+        }
+
+        .text-frame.active {
+            opacity: 1;
+            border-color: var(--green-main);
+        }
+
+        @keyframes selectedTextPulse {
+            0% { 
+                opacity: 0;
+                transform: scale(0.95);
+                border-color: var(--orange-main);
+                box-shadow: 0 0 0 rgba(255, 110, 65, 0);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.02);
+                border-color: var(--green-main);
+                box-shadow: 0 0 25px rgba(27, 59, 20, 0.6);
+            }
+            100% { 
+                opacity: 0.8;
+                transform: scale(1);
+                border-color: var(--green-main);
+                box-shadow: 0 0 15px rgba(27, 59, 20, 0.3);
+            }
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            touch-action: manipulation;
+            object-fit: contain;
+            border-radius: 18px;
+            background: white;
+        }
+
+        /* FIXED: Enhanced Glass Footer with Better PWA Support */
+        .footer-controls {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 16px;
+            padding-bottom: calc(16px + var(--safe-area-bottom));
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1900;
+            box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.1);
+            height: auto;
+            min-height: var(--footer-height);
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .night-mode .footer-controls {
+            background: rgba(21, 46, 17, 0.85);
+            border-top: 1px solid rgba(255, 243, 227, 0.2);
+        }
+
+        .control-icons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .control-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 14px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color-light);
+            color: var(--text-color-light);
+            min-width: 65px;
+            position: relative;
+        }
+
+        .control-icon:hover, .control-icon.active {
+            background: var(--orange-main);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 110, 65, 0.4);
+            border-color: var(--orange-dark);
+        }
+
+        .control-icon svg {
+            width: 22px;
+            height: 22px;
+            margin-bottom: 4px;
+            stroke-width: 2;
+        }
+
+        .control-icon span {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* FIXED: Enhanced Glass Accordion Panels with Better Spacing */
+        .accordion-panel {
+            position: fixed;
+            bottom: calc(var(--footer-height) + var(--safe-area-bottom) + 10px);
+            left: 10px;
+            right: 10px;
+            background: var(--panel-bg-light);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            box-shadow: 0 -8px 40px var(--shadow-color);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            z-index: 1800;
+            max-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--safe-area-bottom) - 40px);
+            overflow-y: auto;
+            border-radius: 20px 20px 20px 20px;
+            border: 1px solid var(--border-color-light);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .accordion-panel.active { 
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border-color-light);
+            font-weight: 700;
+            font-size: 1rem;
+            position: sticky;
+            top: 0;
+            background: var(--panel-bg-light);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            z-index: 10;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .close-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color-light);
+            padding: 6px 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-panel:hover {
+            background: rgba(255, 110, 65, 0.2);
+            border-color: var(--orange-main);
+        }
+
+        .panel-content {
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* FIXED: Enhanced Glass Font Panel Management with Better Text Input */
+        .font-panels-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .font-panel {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 14px;
+            border: 1px solid var(--border-color-light);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .font-panel:hover {
+            background: rgba(255, 110, 65, 0.15);
+            border-color: var(--orange-main);
+        }
+
+        .font-panel.selected {
+            border-color: var(--green-main);
+            background: rgba(27, 59, 20, 0.15);
+            box-shadow: 0 0 20px rgba(27, 59, 20, 0.2);
+        }
+
+        .font-panel .font-text-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color-light);
+            color: var(--text-color-light);
+            font-size: 16px;
+            padding: 12px 14px;
+            resize: none;
+            overflow-y: hidden;
+            min-height: 22px;
+            max-height: 60px;
+            line-height: 1.4;
+            font-family: inherit;
+            word-wrap: break-word;
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .font-panel .font-text-input::placeholder {
+            color: rgba(128, 128, 128, 0.7);
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .font-panel .font-text-input:focus {
+            outline: none;
+            border-color: var(--orange-main);
+            background: rgba(255, 255, 255, 0.1);
+            text-align: left;
+        }
+
+        .font-panel .remove-font {
+            background: rgba(255, 68, 68, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #ff4444;
+            border: 1px solid rgba(255, 68, 68, 0.3);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .font-panel .remove-font:hover {
+            background: rgba(255, 68, 68, 0.25);
+            border-color: #ff4444;
+            transform: scale(1.1);
+        }
+
+        .add-font-panel-btn {
+            background: rgba(255, 110, 65, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: var(--orange-main);
+            border: 1px solid var(--orange-main);
+            padding: 14px 20px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .add-font-panel-btn:hover {
+            background: var(--orange-main);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .add-font-panel-btn:disabled {
+            background: rgba(128, 128, 128, 0.15);
+            color: rgba(128, 128, 128, 0.6);
+            border-color: rgba(128, 128, 128, 0.3);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* FIXED: Enhanced Glass Color Grids */
+        .color-grid {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            margin-top: 16px;
+            margin-bottom: 14px;
+            padding: 12px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--orange-main) transparent;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid var(--border-color-light);
+        }
+        
+        .color-grid::-webkit-scrollbar {
+            height: 6px;
+        }
+        .color-grid::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.1);
+            border-radius: 3px;
+        }
+        .color-grid::-webkit-scrollbar-thumb {
+            background-color: var(--orange-main);
+            border-radius: 3px;
+        }
+        
+        .color-grid-swatch {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            flex-shrink: 0;
+            position: relative;
+            background-clip: padding-box;
+            outline: none;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .color-grid-swatch:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .color-grid-swatch.active {
+            transform: scale(1.2);
+            box-shadow: 0 0 0 4px var(--orange-main), 0 10px 30px rgba(255, 110, 65, 0.5);
+            border-color: white;
+        }
+
+        /* Special styling for white color */
+        .color-grid-swatch[data-color="#ffffff"] {
+            border-color: #ddd;
+        }
+
+        .color-grid-swatch[data-color="#ffffff"]:hover {
+            border-color: #bbb;
+        }
+
+        .color-grid-swatch[data-color="#ffffff"].active {
+            border-color: var(--orange-main);
+        }
+
+        /* FIXED: Enhanced Glass Form Elements */
+        input[type="file"] { 
+            display: none;
+        }
+        
+        textarea, input[type="number"], select, button {
+            padding: 12px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--border-color-light);
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+            font-family: inherit;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: var(--text-color-light);
+        }
+
+        textarea { 
+            resize: none;
+            min-height: 80px; 
+        }
+        
+        textarea:focus, input:focus, select:focus {
+            border-color: var(--orange-main);
+            box-shadow: 0 0 0 4px rgba(255, 110, 65, 0.15);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .font-add-group { 
+            display: flex;
+            align-items: center; 
+            gap: 12px; 
+        }
+
+        .add-font-btn {
+            background: rgba(255, 110, 65, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: var(--orange-main);
+            border: 1px solid var(--orange-main);
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .add-font-btn:hover { 
+            background: var(--orange-main);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* FIXED: Enhanced Glass Slider Groups with Better Number Positioning */
+        .slider-group { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px;
+            padding: 8px 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid var(--border-color-light);
+            padding: 10px 14px;
+        }
+        
+        .slider-group label {
+            min-width: 80px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .slider-group input[type="range"] {
+            flex-grow: 1;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            height: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--border-color-light);
+            outline: none;
+            margin: 0 8px;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: var(--orange-main);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            background: var(--orange-dark);
+        }
+        
+        .slider-value {
+            font-weight: 600;
+            min-width: 50px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--orange-main);
+            background: rgba(255, 110, 65, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 4px 8px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 110, 65, 0.3);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* FIXED: Enhanced Glass Crop Modal with Brand Colors */
+        .crop-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: none;
+            z-index: 5000;
+        }
+
+        .crop-modal.active {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .crop-container {
+            background: var(--panel-bg-light);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: 20px;
+            max-width: 95vw;
+            max-height: 95vh;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color-light);
+            color: var(--text-color-light);
+        }
+
+        .crop-header {
+            text-align: center;
+            margin-bottom: 18px;
+            color: var(--text-color-light);
+            flex-shrink: 0;
+        }
+
+        .crop-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .crop-viewport {
+            position: relative;
+            flex: 1;
+            border-radius: 16px;
+            border: 2px solid var(--border-color-light);
+            margin-bottom: 18px;
+            background: rgba(240, 240, 240, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            overflow: hidden;
+            touch-action: none;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            contain: layout style paint;
+            min-height: 300px;
+        }
+
+        .crop-viewport.dragging {
+            cursor: grabbing;
+        }
+
+        .crop-image {
+            position: absolute;
+            transition: none;
+            user-select: none;
+            -webkit-user-select: none;
+            pointer-events: none;
+            max-width: none;
+            max-height: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            image-rendering: high-quality;
+            display: block;
+        }
+
+        .crop-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--text-color-light);
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .crop-loading-spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid rgba(255, 110, 65, 0.3);
+            border-top: 3px solid var(--orange-main);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .crop-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .crop-frame {
+            position: absolute;
+            border: 3px solid var(--orange-main);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            display: block;
+        }
+
+        .crop-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex-shrink: 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .crop-tools-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 8px 0;
+        }
+
+        .crop-tool-group {
+            display: flex;
+            gap: 10px;
+            flex-shrink: 0;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color-light);
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .zoom-btn {
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--text-color-light);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .zoom-btn:hover {
+            color: var(--orange-main);
+            transform: scale(1.1);
+        }
+
+        .zoom-info {
+            font-size: 0.8rem;
+            color: var(--text-color-light);
+            min-width: 50px;
+            text-align: center;
+            font-weight: 600;
+            background: rgba(255, 110, 65, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 110, 65, 0.3);
+        }
+
+        .crop-instructions {
+            font-size: 0.75rem;
+            color: var(--text-color-light);
+            opacity: 0.8;
+            text-align: center;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .crop-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .crop-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border-color-light);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .crop-btn.cancel {
+            background: rgba(128, 128, 128, 0.15);
+            color: var(--text-color-light);
+            border-color: var(--border-color-light);
+        }
+
+        .crop-btn.confirm {
+            background: rgba(255, 110, 65, 0.2);
+            color: var(--orange-main);
+            border-color: var(--orange-main);
+        }
+
+        .crop-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .crop-btn.cancel:hover {
+            background: rgba(128, 128, 128, 0.25);
+        }
+
+        .crop-btn.confirm:hover {
+            background: var(--orange-main);
+            color: white;
+        }
+
+        /* FIXED: Enhanced Glass Download Modal with Brand Colors */
+        .download-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            display: none;
+            z-index: 6000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .download-modal.active {
+            display: flex;
+        }
+
+        .download-modal-content {
+            background: var(--panel-bg-light);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 450px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--border-color-light);
+            color: var(--text-color-light);
+        }
+
+        .download-modal-header {
+            text-align: center;
+            margin-bottom: 22px;
+            color: var(--text-color-light);
+        }
+
+        .download-modal-header h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .download-modal-header p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .download-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .download-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color-light);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .download-card:hover {
+            background: rgba(255, 110, 65, 0.2);
+            border-color: var(--orange-main);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 110, 65, 0.3);
+        }
+
+        .download-card:hover .download-content h3,
+        .download-card:hover .download-content p {
+            color: var(--text-color-light);
+        }
+
+        .download-card:hover .download-icon svg {
+            stroke: var(--orange-main);
+        }
+
+        .download-icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 110, 65, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 110, 65, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .download-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--orange-main);
+            transition: all 0.3s ease;
+        }
+
+        .download-content {
+            flex: 1;
+        }
+
+        .download-content h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            color: var(--text-color-light);
+            transition: color 0.3s ease;
+        }
+
+        .download-content p {
+            font-size: 0.8rem;
+            margin: 0;
+            color: var(--text-color-light);
+            opacity: 0.8;
+            transition: color 0.3s ease;
+        }
+
+        .app-info {
+            margin-top: 18px;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 14px;
+            border: 1px solid var(--border-color-light);
+            text-align: center;
+        }
+
+        .app-info h4 {
+            margin: 0 0 12px 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color-light);
+        }
+
+        .app-version {
+            font-size: 0.75rem;
+            color: var(--text-color-light);
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+
+        .developer-credits {
+            font-size: 0.85rem;
+            color: var(--text-color-light);
+            margin-bottom: 8px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .follow-text {
+            font-size: 0.8rem;
+            color: var(--text-color-light);
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(255, 110, 65, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--text-color-light);
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 110, 65, 0.3);
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 110, 65, 0.25);
+            border-color: var(--orange-main);
+            transform: translateY(-1px);
+        }
+
+        .contact-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .close-download-modal {
+            width: 100%;
+            padding: 14px;
+            background: rgba(128, 128, 128, 0.15);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: var(--text-color-light);
+            border: 1px solid var(--border-color-light);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 14px;
+        }
+
+        .close-download-modal:hover {
+            transform: translateY(-2px);
+            background: rgba(128, 128, 128, 0.25);
+        }
+
+        /* FIXED: Simple Success Animation */
+        .success-icon {
+            animation: successPulse 0.6s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* FIXED: Custom Alert Modal */
+        .custom-alert-modal {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* FIXED: Language Support */
+        body[data-lang="fa"] {
+            direction: rtl;
+        }
+
+        body[data-lang="ar"] {
+            direction: rtl;
+        }
+
+        body[data-lang="fa"] .slider-group label {
+            text-align: right;
+        }
+
+        body[data-lang="ar"] .slider-group label {
+            text-align: right;
+        }
+
+        body[data-lang="fa"] .slider-value {
+            text-align: center;
+        }
+
+        body[data-lang="ar"] .slider-value {
+            text-align: center;
+        }
+
+        /* FIXED: Responsive Design with Better PWA Support */
+        @media (max-width: 768px) {
+            :root {
+                --header-height: 100px;
+                --footer-height: 100px;
+            }
+            
+            #appTitle { 
+                font-size: 1rem;
+            }
+            .subtitle { 
+                font-size: 0.55rem;
+            }
+            .control-icon span { 
+                font-size: 0.65rem;
+            }
+            .control-icons { 
+                gap: 12px;
+            }
+            .crop-modal {
+                padding: 10px;
+            }
+            
+            .crop-container {
+                padding: 15px;
+            }
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .accordion-panel {
+                bottom: calc(var(--footer-height) + var(--safe-area-bottom) + 8px);
+                max-height: 200px;
+            }
+
+            .canvas-container {
+                padding: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --footer-height: 95px;
+            }
+            
+            .header { 
+                padding: 6px 12px;
+            }
+            .footer-controls { 
+                padding: 12px 14px;
+                padding-bottom: calc(12px + var(--safe-area-bottom));
+            }
+            #appTitle { 
+                font-size: 0.9rem;
+            }
+            .control-icons {
+                gap: 8px;
+            }
+            .control-icon {
+                min-width: 55px;
+                padding: 8px 10px;
+            }
+        }
+
+        /* FIXED: PWA Support with Proper Safe Area Handling */
+        @media (display-mode: standalone) {
+            .main-app-container {
+                height: 100vh;
+                height: 100dvh;
+            }
+            
+            .header {
+                padding-top: calc(var(--safe-area-top) + 8px);
+            }
+            
+            .footer-controls {
+                padding-bottom: calc(16px + var(--safe-area-bottom));
+                min-height: calc(var(--footer-height) + var(--safe-area-bottom));
+            }
+            
+            .accordion-panel {
+                bottom: calc(var(--footer-height) + var(--safe-area-bottom) + 10px);
+                max-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--safe-area-top) - var(--safe-area-bottom) - 40px);
+            }
+        }
+
+        /* FIXED: Performance Optimizations */
+        * {
+            box-sizing: border-box;
+        }
+
+        button:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+        }
+
+        .will-change-transform {
+            will-change: transform;
+        }
+
+        .gpu-accelerated {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body data-lang="en">
+
+    <!-- FIXED: Orientation Lock Overlay -->
+    <div id="orientation-lock-overlay" class="orientation-lock-overlay">
+        <div class="orientation-lock-message">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+            </svg>
+            <h2 data-en="Portrait Mode Required" data-fa="حالت عمودی مورد نیاز است" data-ar="الوضع العمودي مطلوب">Portrait Mode Required</h2>
+            <p data-en="Please rotate your device to portrait mode for the best experience." data-fa="لطفاً دستگاه خود را به حالت عمودی بچرخانید تا بهترین تجربه را داشته باشید." data-ar="يرجى تدوير جهازك إلى الوضع العمودي للحصول على أفضل تجربة.">Please rotate your device to portrait mode for the best experience.</p>
+        </div>
+    </div>
+
+    <!-- FIXED: Main App Container -->
+    <div class="main-app-container">
+        
+        <!-- FIXED: Professional Loading Screen -->
+        <div id="dacoLoadingScreen" class="daco-loading-screen">
+            <div class="daco-logo-container">
+                <div class="daco-logo">
+                    <img src="https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=512&h=512" alt="DACO Logo" />
+                </div>
+            </div>
+            <div class="loading-text" data-en="Loading DACO Storymaker Pro..." data-fa="در حال بارگذاری DACO Storymaker Pro..." data-ar="جاري تحميل DACO Storymaker Pro...">Loading DACO Storymaker Pro...</div>
+            <div class="loading-subtitle" data-en="Digital Art Creative Overlay" data-fa="Digital Art Creative Overlay" data-ar="Digital Art Creative Overlay">Digital Art Creative Overlay</div>
+        </div>
+
+        <!-- FIXED: Enhanced Crop Modal -->
+        <div id="cropModal" class="crop-modal">
+            <div class="crop-container">
+                <div class="crop-header">
+                    <h3 data-en="Crop Image - 1080x1920 Format" data-fa="برش تصویر - فرمت ١٠٨٠در١٩٢٠" data-ar="قص الصورة - تنسيق 1080x1920 ">Crop Image - Perfect 9:16 Format</h3>
+                </div>
+                
+                <div class="crop-viewport" id="cropViewport">
+                    <img id="cropImage" class="crop-image" style="display: none;">
+                    <div class="crop-loading" id="cropLoading">
+                        <div class="crop-loading-spinner"></div>
+                        <span data-en="Loading image..." data-fa="در حال بارگذاری عکس..." data-ar="جاري تحميل الصورة...">Loading image...</span>
+                    </div>
+                    <div class="crop-overlay">
+                        <div id="cropFrame" class="crop-frame"></div>
+                    </div>
+                </div>
+                
+                <div class="crop-controls">
+                    <div class="crop-instructions" data-en="Use pinch to zoom • Drag to position • Image stays perfectly in frame" data-fa="اندازه عکس را با زوم و برش دلخواه تغییر دهید" data-ar="استخدم القرص للتكبير • اسحب للوضعية • الصورة تبقى تماماً في الإطار">Use pinch to zoom • Drag to position • Image stays perfectly in frame</div>
+                    
+                    <div class="crop-tools-container">                   
+                        <div class="crop-tool-group">
+                            <div class="zoom-controls">
+                                <button class="zoom-btn" id="zoomOut">−</button>
+                                <span class="zoom-info" id="zoomInfo">100%</span>
+                                <button class="zoom-btn" id="zoomIn">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="crop-actions">
+                        <button class="crop-btn cancel" id="cropCancel" data-en="Cancel" data-fa="لغو" data-ar="إلغاء">Cancel</button>
+                        <button class="crop-btn confirm" id="cropConfirm" data-en="Apply" data-fa="اجرا" data-ar="تطبيق">Apply </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FIXED: Enhanced Download Modal -->
+        <div id="downloadModal" class="download-modal">
+            <div class="download-modal-content">
+                <div class="download-modal-header">
+                    <h3 data-en="Download & Export" data-fa="دانلود و خروجی" data-ar="التحميل والتصدير">Download & Export</h3>
+                    <p data-en="Choose your preferred export option" data-fa="گزینه خروجی مورد نظر خود را انتخاب کنید" data-ar="اختر خيار التصدير المفضل لديك">Choose your preferred export option</p>
+                </div>
+                
+                <div class="download-grid">
+                    <div class="download-card" id="saveToGalleryCard">
+                        <div class="download-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21,15 16,10 5,21"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h3 data-en="Save High Quality" data-fa="ذخیره با کیفیت بالا" data-ar="حفظ جودة عالية ">Save High Quality</h3>
+                            <p data-en="Perfect quality for Instagram Stories and social media" data-fa="کیفیت کامل برای استوری اینستاگرام و شبکه‌های اجتماعی" data-ar="جودة مثالية لقصص إنستغرام ووسائل التواصل">Perfect quality for Instagram Stories and social media</p>
+                        </div>
+                    </div>
+                    
+                    <div class="download-card" id="downloadTransparentCard">
+                        <div class="download-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="4 7 4 4 20 4 20 7"/>
+                                <line x1="9" y1="20" x2="15" y2="20"/>
+                                <line x1="12" y1="4" x2="12" y2="20"/>
+                            </svg>
+                        </div>
+                        <div class="download-content">
+                            <h3 data-en="Text Only PNG" data-fa="فقط متن PNG" data-ar="النص فقط PNG">Text Only PNG</h3>
+                            <p data-en="High-quality text with transparent background" data-fa="متن با کیفیت بالا و پس‌زمینه شفاف" data-ar="نص عالي الجودة مع خلفية شفافة">High-quality text with transparent background</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-info">
+                    <h4 data-en="DACO Storymaker Pro" data-fa="DACO Storymaker Pro" data-ar="DACO Storymaker Pro">DACO Storymaker Pro</h4>
+                    <div class="app-version" data-en="Version 3.0.0 • Professional Edition" data-fa="نسخه ۳.۰.۰ • ویرایش حرفه‌ای" data-ar="الإصدار 3.0.0 • الإصدار المهني">Version 3.0.0 • Professional Edition</div>
+                    
+                    <div class="follow-text" data-en="Follow us on Instagram for updates" data-fa="ما را در اینستاگرام دنبال کنید" data-ar="تابعونا على إنستغرام للتحديثات">Follow us on Instagram for updates</div>
+                    
+                    <div class="contact-links">
+                        <a href="mailto:daco.artgroup@gmail.com" class="contact-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            <span data-en="Email" data-fa="ایمیل" data-ar="البريد">Email</span>
+                        </a>
+                        <a href="https://www.instagram.com/daco.artgroup?igsh=MTI3OTljdmU2M3hlcg==" class="contact-link" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                            </svg>
+                            <span data-en="Instagram" data-fa="اینستاگرام" data-ar="إنستغرام">Instagram</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="close-download-modal" id="closeDownloadModal" data-en="Close" data-fa="بستن" data-ar="إغلاق">Close</button>
+            </div>
+        </div>
+
+        <header class="header">
+            <div class="header-top">
+                <!-- FIXED: Left Side Controls - Download, Delete, Upload -->
+                <div class="header-controls-left">
+                    <input type="file" id="imageInput" accept="image/*">
+                    <button class="header-btn" id="downloadHeaderBtn" aria-label="Download">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </button>
+                    <button class="delete-image-btn" id="deleteImageBtn" aria-label="Delete Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3,6 5,6 21,6"/>
+                            <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                            <line x1="10" y1="11" x2="10" y2="17"/>
+                            <line x1="14" y1="11" x2="14" y2="17"/>
+                        </svg>
+                    </button>
+                    <button class="header-btn" id="uploadImageBtn" aria-label="Upload Image">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21,15 16,10 5,21"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="app-title-section">
+                    <h1 id="appTitle">DACO Storymaker Pro</h1>
+                    <p class="subtitle" id="appSubtitle">Professional Edition</p>
+                </div>
+                
+                <!-- FIXED: Right Side Controls - Theme, Language -->
+                <div class="header-controls-right">
+                    <button class="header-btn" id="themeToggle" aria-label="Toggle Theme">
+                        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                    <button class="header-btn" id="langSwitch" aria-label="Switch Language">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12,2a15.3,15.3,0,0,1,4,10,15.3,15.3,0,0,1-4,10,15.3,15.3,0,0,1-4-10A15.3,15.3,0,0,1,12,2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="canvas-container">
+                <div class="canvas-wrapper bounded">
+                    <div class="guide-lines">
+                        <div class="guide-line vertical"></div>
+                        <div class="guide-line horizontal"></div>
+                    </div>
+                    <label for="imageInput" id="photo-placeholder">+</label>
+                    <canvas id="canvas"></canvas>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer-controls">
+            <div class="control-icons">
+                <button class="control-icon" data-panel="text">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                        <line x1="9" y1="20" x2="15" y2="20"></line>
+                        <line x1="12" y1="4" x2="12" y2="20"></line>
+                    </svg>
+                    <span data-en="Text" data-fa="متن" data-ar="نص">Text</span>
+                </button>
+                <button class="control-icon" data-panel="color">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                    </svg>
+                    <span data-en="Color" data-fa="رنگ" data-ar="لون">Color</span>
+                </button>
+                <button class="control-icon" data-panel="background">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <path d="M9 9l6 6"/>
+                        <path d="M15 9l-6 6"/>
+                    </svg>
+                    <span data-en="Background" data-fa="بک گراند" data-ar="خلفية">Background</span>
+                </button>
+                <button class="control-icon" data-panel="effects">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span data-en="Effects" data-fa="افکت" data-ar="تأثيرات">Effects</span>
+                </button>
+            </div>
+        </footer>
+
+        <div id="textPanel" class="accordion-panel">
+            <div class="panel-header">
+                <span data-en="Text Settings" data-fa="تنظیمات متن" data-ar="إعدادات النص">Text Settings</span>
+                <button class="close-panel" data-close="text">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="font-panels-container" id="fontPanelsContainer">
+                </div>
+                <button class="add-font-panel-btn" id="addFontPanelBtn">
+                    <span>+</span>
+                    <span data-en="Add new text" data-fa="اضافه کردن متن جدید" data-ar="إضافة نص جديد">Add new text</span>
+                </button>
+                <div class="font-add-group">
+                    <label for="fontSelector" data-en="Font:" data-fa="فونت:" data-ar="الخط:">Font:</label>
+                    <select id="fontSelector">
+                        <option value="Vazirmatn" selected>Vazirmatn</option>
+                        <option value="Lalezar">Lalezar</option>
+                        <option value="Amiri">Amiri</option>
+                        <option value="Markazi Text">Markazi Text</option>
+                        <option value="Noto Naskh Arabic">Noto Naskh Arabic</option>
+                    </select>
+                    <label for="fontInput" class="add-font-btn">+</label>
+                    <input type="file" id="fontInput" accept=".ttf,.otf">
+                </div>
+                <div class="slider-group">
+                    <label for="fontSizeSlider" data-en="Size:" data-fa="سایز:" data-ar="الحجم:">Size:</label>
+                    <input type="range" id="fontSizeSlider" min="10" max="200" value="50">
+                    <span id="fontSizeValue" class="slider-value">50</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="colorPanel" class="accordion-panel">
+            <div class="panel-header">
+                <span data-en="Text Color" data-fa="رنگ متن" data-ar="لون النص">Text Color</span>
+                <button class="close-panel" data-close="color">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="color-grid" id="textColorGrid">
+                </div>
+                <div class="slider-group">
+                    <label for="opacitySlider" data-en="Opacity:" data-fa="شفافیت:" data-ar="الشفافية:">Opacity:</label>
+                    <input type="range" id="opacitySlider" min="0" max="100" value="100">
+                    <span id="opacityValue" class="slider-value">100%</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="backgroundPanel" class="accordion-panel">
+            <div class="panel-header">
+                <span data-en="Text Background" data-fa="پس زمینه متن" data-ar="خلفية النص">Text Background</span>
+                <button class="close-panel" data-close="background">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="color-grid" id="bgColorGrid">
+                </div>
+                <div class="slider-group">
+                    <label for="backdropOpacitySlider" data-en="Background:" data-fa="پس‌زمینه:" data-ar="الخلفية:">Background:</label>
+                    <input type="range" id="backdropOpacitySlider" min="0" max="100" value="0">
+                    <span id="backdropOpacityValue" class="slider-value">0%</span>
+                </div>
+                <div class="slider-group">
+                    <label for="backdropRadiusSlider" data-en="Radius:" data-fa="گردی:" data-ar="الزاوية:">Radius:</label>
+                    <input type="range" id="backdropRadiusSlider" min="0" max="100" value="0">
+                    <span id="backdropRadiusValue" class="slider-value">0</span>
+                </div>
+                <div class="slider-group">
+                    <label for="backdropWidthSlider" data-en="Width:" data-fa="پهنا:" data-ar="العرض:">Width:</label>
+                    <input type="range" id="backdropWidthSlider" min="0" max="100" value="0">
+                    <span id="backdropWidthValue" class="slider-value">0</span>
+                </div>
+                <div class="slider-group">
+                    <label for="backdropHeightSlider" data-en="Height:" data-fa="ارتفاع:" data-ar="الارتفاع:">Height:</label>
+                    <input type="range" id="backdropHeightSlider" min="0" max="100" value="0">
+                    <span id="backdropHeightValue" class="slider-value">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="effectsPanel" class="accordion-panel">
+            <div class="panel-header">
+                <span data-en="Effects" data-fa="افکت‌ها" data-ar="التأثيرات">Effects</span>
+                <button class="close-panel" data-close="effects">×</button>
+            </div>
+            <div class="panel-content">
+                <div class="slider-group">
+                    <label for="shadowSlider" data-en="Shadow:" data-fa="سایه:" data-ar="الظل:">Shadow:</label>
+                    <input type="range" id="shadowSlider" min="0" max="20" value="0">
+                    <span id="shadowValue" class="slider-value">0</span>
+                </div>
+                <div class="slider-group">
+                    <label for="strokeSlider" data-en="Stroke:" data-fa="حاشیه:" data-ar="الحد:">Stroke:</label>
+                    <input type="range" id="strokeSlider" min="0" max="10" value="0">
+                    <span id="strokeValue" class="slider-value">0</span>
+                </div>
+                <div class="slider-group">
+                    <label for="glowSlider" data-en="Glow:" data-fa="درخشش:" data-ar="التوهج:">Glow:</label>
+                    <input type="range" id="glowSlider" min="0" max="20" value="0">
+                    <span id="glowValue" class="slider-value">0</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ===============================================
+        // DACO STORYMAKER PRO - Version 3.0.0
+        // ===============================================
+        // FIXED: Complete Production-Ready Implementation
+        // Performance Optimized | Memory Leak Free
+        // Modern JavaScript Architecture
+        // ===============================================
+
+        'use strict';
+
+        // FIXED: Enhanced Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+                .then(registration => {
+                    console.log('✅ SW registered successfully:', registration.scope);
+                })
+                .catch(error => console.error('❌ SW registration failed:', error));
+        }
+
+        // FIXED: Global canvas for text measurement to avoid memory leaks
+        const measurementCanvas = document.createElement('canvas');
+        const measurementCtx = measurementCanvas.getContext('2d');
+
+        // FIXED: Optimized draw scheduling system
+        let isDrawScheduled = false;
+        function scheduleDraw() {
+            if (!isDrawScheduled) {
+                isDrawScheduled = true;
+                requestAnimationFrame(() => {
+                    drawCanvas();
+                    isDrawScheduled = false;
+                });
+            }
+        }
+
+        // FIXED: State Management System
+        class AppState {
+            constructor() {
+                this.img = null;
+                this.originalImageData = null;
+                this.textObjects = [];
+                this.selectedTextIndex = -1;
+                this.currentLang = 'en';
+                this.currentFont = 'Vazirmatn';
+                this.customFontsCount = 0;
+                this.maxTextObjects = 3;
+                this.maxCustomFonts = 3;
+                this.fontPanels = [];
+                
+                // Interaction state
+                this.isDraggingText = false;
+                this.isDraggingCanvas = false;
+                this.isPinching = false;
+                this.initialPinchDistance = 0;
+                this.lastFontSize = 50;
+                this.dragStart = { x: 0, y: 0 };
+                this.wrapperPos = { x: 0, y: 0 };
+                
+                // UI state
+                this.selectionBorderTimeout = null;
+                this.borderFadeTimeout = null;
+                this.canvasBounds = { left: 0, top: 0, right: 0, bottom: 0 };
+                
+                // Touch handling
+                this.lastTouchTime = 0;
+                this.touchCount = 0;
+                this.lastCanvasTouchTime = 0;
+                this.canvasTouchCount = 0;
+                
+                // FIXED: Memory management
+                this.createdBlobUrls = [];
+                this.eventListeners = new Map();
+                this.globalListeners = [];
+            }
+
+            // FIXED: Memory cleanup
+            cleanup() {
+                this.createdBlobUrls.forEach(url => URL.revokeObjectURL(url));
+                this.createdBlobUrls = [];
+                
+                this.eventListeners.forEach((listeners, element) => {
+                    listeners.forEach(({ event, handler }) => {
+                        if (element && element.removeEventListener) {
+                            element.removeEventListener(event, handler);
+                        }
+                    });
+                });
+                this.eventListeners.clear();
+                
+                this.globalListeners.forEach(({ element, event, handler }) => {
+                    if (element && element.removeEventListener) {
+                        element.removeEventListener(event, handler);
+                    }
+                });
+                this.globalListeners = [];
+            }
+
+            // FIXED: Safe event listener management
+            addEventListener(element, event, handler, options = {}) {
+                if (!element) {
+                    console.warn(`Cannot add event listener to null element for event: ${event}`);
+                    return;
+                }
+                
+                element.addEventListener(event, handler, options);
+                
+                if (!this.eventListeners.has(element)) {
+                    this.eventListeners.set(element, []);
+                }
+                this.eventListeners.get(element).push({ event, handler });
+                
+                if (element === window || element === document) {
+                    this.globalListeners.push({ element, event, handler });
+                }
+            }
+
+            // FIXED: Blob URL management
+            createBlobUrl(blob) {
+                const url = URL.createObjectURL(blob);
+                this.createdBlobUrls.push(url);
+                return url;
+            }
+
+            revokeBlobUrl(url) {
+                const index = this.createdBlobUrls.indexOf(url);
+                if (index > -1) {
+                    this.createdBlobUrls.splice(index, 1);
+                    URL.revokeObjectURL(url);
+                }
+            }
+
+            // FIXED: Reset state when image changes
+            resetImageState() {
+                this.textObjects.forEach((_, index) => {
+                    if (DOM.canvas) {
+                        this.textObjects[index].x = (DOM.canvas.width - this.textObjects[index].width) / 2;
+                        this.textObjects[index].y = (DOM.canvas.height - this.textObjects[index].height) / 2 + (index * (DOM.canvas.height * 0.1));
+                        this.textObjects[index].width = Math.max(200, DOM.canvas.width * 0.3);
+                        this.textObjects[index].height = Math.max(60, DOM.canvas.height * 0.08);
+                    }
+                });
+            }
+        }
+
+        // FIXED: Initialize App State
+        const appState = new AppState();
+
+        // FIXED: Enhanced Crop Modal State
+        class CropState {
+            constructor() {
+                this.scale = 1;
+                this.position = { x: 0, y: 0 };
+                this.minScale = 0.1;
+                this.maxScale = 5;
+                this.isDragging = false;
+                this.isPinching = false;
+                this.lastTouchPos = { x: 0, y: 0 };
+                this.bounds = { left: 0, top: 0, right: 0, bottom: 0 };
+                this.originalImage = null;
+            }
+
+            reset() {
+                this.scale = 1;
+                this.position = { x: 0, y: 0 };
+                this.isDragging = false;
+                this.isPinching = false;
+                this.lastTouchPos = { x: 0, y: 0 };
+                this.bounds = { left: 0, top: 0, right: 0, bottom: 0 };
+                if (this.originalImage) {
+                    this.originalImage = null;
+                }
+            }
+        }
+
+        const cropState = new CropState();
+
+        // FIXED: DOM Elements with proper validation
+        const DOM = {
+            // Core elements
+            dacoLoadingScreen: document.getElementById('dacoLoadingScreen'),
+            orientationLockOverlay: document.getElementById('orientation-lock-overlay'),
+            
+            // Crop modal elements
+            cropModal: document.getElementById('cropModal'),
+            cropViewport: document.getElementById('cropViewport'),
+            cropImage: document.getElementById('cropImage'),
+            cropLoading: document.getElementById('cropLoading'),
+            cropFrame: document.getElementById('cropFrame'),
+            zoomIn: document.getElementById('zoomIn'),
+            zoomOut: document.getElementById('zoomOut'),
+            zoomInfo: document.getElementById('zoomInfo'),
+            cropCancel: document.getElementById('cropCancel'),
+            cropConfirm: document.getElementById('cropConfirm'),
+            
+            // Download modal elements
+            downloadModal: document.getElementById('downloadModal'),
+            closeDownloadModal: document.getElementById('closeDownloadModal'),
+            saveToGalleryCard: document.getElementById('saveToGalleryCard'),
+            downloadTransparentCard: document.getElementById('downloadTransparentCard'),
+            
+            // Header buttons
+            downloadHeaderBtn: document.getElementById('downloadHeaderBtn'),
+            imageInput: document.getElementById('imageInput'),
+            uploadImageBtn: document.getElementById('uploadImageBtn'),
+            deleteImageBtn: document.getElementById('deleteImageBtn'),
+            themeToggle: document.getElementById('themeToggle'),
+            langSwitch: document.getElementById('langSwitch'),
+            
+            // Font and input elements
+            fontInput: document.getElementById('fontInput'),
+            fontSelector: document.getElementById('fontSelector'),
+            fontPanelsContainer: document.getElementById('fontPanelsContainer'),
+            addFontPanelBtn: document.getElementById('addFontPanelBtn'),
+            
+            // Canvas and placeholder
+            canvas: document.getElementById('canvas'),
+            photoPlaceholder: document.getElementById('photo-placeholder'),
+            
+            // Sliders and values
+            fontSizeSlider: document.getElementById('fontSizeSlider'),
+            fontSizeValue: document.getElementById('fontSizeValue'),
+            textColorGrid: document.getElementById('textColorGrid'),
+            bgColorGrid: document.getElementById('bgColorGrid'),
+            opacitySlider: document.getElementById('opacitySlider'),
+            opacityValue: document.getElementById('opacityValue'),
+            shadowSlider: document.getElementById('shadowSlider'),
+            shadowValue: document.getElementById('shadowValue'),
+            strokeSlider: document.getElementById('strokeSlider'),
+            strokeValue: document.getElementById('strokeValue'),
+            glowSlider: document.getElementById('glowSlider'),
+            glowValue: document.getElementById('glowValue'),
+            backdropOpacitySlider: document.getElementById('backdropOpacitySlider'),
+            backdropWidthSlider: document.getElementById('backdropWidthSlider'),
+            backdropHeightSlider: document.getElementById('backdropHeightSlider'),
+            backdropRadiusSlider: document.getElementById('backdropRadiusSlider'),
+            backdropOpacityValue: document.getElementById('backdropOpacityValue'),
+            backdropWidthValue: document.getElementById('backdropWidthValue'),
+            backdropHeightValue: document.getElementById('backdropHeightValue'),
+            backdropRadiusValue: document.getElementById('backdropRadiusValue'),
+            
+            // Batch selectors
+            controlIcons: document.querySelectorAll('.control-icon'),
+            accordionPanels: document.querySelectorAll('.accordion-panel'),
+            closePanelBtns: document.querySelectorAll('.close-panel'),
+            verticalGuide: document.querySelector('.guide-line.vertical'),
+            horizontalGuide: document.querySelector('.guide-line.horizontal'),
+            canvasWrapper: document.querySelector('.canvas-wrapper')
+        };
+
+        // FIXED: Validate DOM elements
+        function validateDOMElements() {
+            const missingElements = [];
+            const criticalElements = [
+                'canvas', 'imageInput', 'uploadImageBtn', 'themeToggle', 'langSwitch', 'downloadHeaderBtn',
+                'fontSelector', 'fontSizeSlider', 'textColorGrid', 'bgColorGrid', 'controlIcons'
+            ];
+            
+            criticalElements.forEach(elementKey => {
+                if (!DOM[elementKey] || (elementKey === 'controlIcons' && DOM[elementKey].length === 0)) {
+                    missingElements.push(elementKey);
+                }
+            });
+            
+            if (missingElements.length > 0) {
+                console.error('❌ Missing critical DOM elements:', missingElements);
+                showAlert('App initialization failed. Please refresh the page.');
+                return false;
+            }
+            
+            console.log('✅ All critical DOM elements found');
+            return true;
+        }
+
+        // FIXED: Safe canvas context
+        const ctx = (() => {
+            if (!DOM.canvas) {
+                console.error('❌ Canvas element not found');
+                return null;
+            }
+            const context = DOM.canvas.getContext('2d');
+            if (!context) {
+                console.error('❌ Failed to get canvas 2D context');
+            }
+            return context;
+        })();
+
+        // FIXED: Enhanced Translation System
+        const translations = {
+            en: {
+                initialCanvasText: '',
+                alertImage: 'Please upload an image first.',
+                alertText: 'Please enter text to download.',
+                alertFont: 'You can add maximum 3 custom fonts.',
+                alertFontSuccess: (fileName) => `Font ${fileName} loaded successfully!`,
+                alertFontError: (message) => `Font loading error: ${message}`,
+                copySuccess: 'Image copied to clipboard successfully!',
+                maxPanels: 'You can have maximum 3 text panels.',
+                textPlaceholder: 'Write your text',
+                saveSuccess: 'High-quality 9:16 image saved perfectly!',
+                downloadSuccess: 'High-quality file downloaded!',
+                saveError: 'Error saving image',
+                downloadError: 'Error downloading',
+                fileDownloaded: 'File downloaded',
+                orientationMessage: 'Please rotate your device to portrait mode for the best experience.'
+            },
+            fa: {
+                initialCanvasText: '',
+                alertImage: 'لطفاً ابتدا یک عکس بارگذاری کنید.',
+                alertText: 'لطفاً متنی برای دانلود وارد کنید.',
+                alertFont: 'شما می‌توانید حداکثر ۳ فونت سفارشی اضافه کنید.',
+                alertFontSuccess: (fileName) => `فونت ${fileName} با موفقیت بارگذاری شد!`,
+                alertFontError: (message) => `خطا در بارگذاری فونت: ${message}`,
+                copySuccess: 'تصویر با موفقیت به کلیپ‌بورد کپی شد!',
+                maxPanels: 'حداکثر ۳ پنل متن می‌توانید داشته باشید.',
+                textPlaceholder: 'متن خود را بنویسید',
+                saveSuccess: 'عکس ۹:۱۶ با کیفیت بالا ذخیره شد!',
+                downloadSuccess: 'فایل با کیفیت بالا دانلود شد!',
+                saveError: 'خطا در ذخیره سازی',
+                downloadError: 'خطا در دانلود',
+                fileDownloaded: 'فایل دانلود شد',
+                orientationMessage: 'لطفاً دستگاه خود را به حالت عمودی بچرخانید تا بهترین تجربه را داشته باشید.'
+            },
+            ar: {
+                initialCanvasText: '',
+                alertImage: 'يرجى تحميل صورة أولاً.',
+                alertText: 'يرجى إدخال نص للتحميل.',
+                alertFont: 'يمكنك إضافة حد أقصى 3 خطوط مخصصة.',
+                alertFontSuccess: (fileName) => `تم تحميل الخط ${fileName} بنجاح!`,
+                alertFontError: (message) => `خطأ في تحميل الخط: ${message}`,
+                copySuccess: 'تم نسخ الصورة إلى الحافظة بنجاح!',
+                maxPanels: 'يمكنك الحصول على حد أقصى 3 لوحات نص.',
+                textPlaceholder: 'اكتب نصك',
+                saveSuccess: 'تم حفظ صورة 9:16 عالية الجودة بشكل مثالي!',
+                downloadSuccess: 'تم تحميل الملف عالي الجودة!',
+                saveError: 'خطأ في حفظ الصورة',
+                downloadError: 'خطأ في التحميل',
+                fileDownloaded: 'تم تحميل الملف',
+                orientationMessage: 'يرجى تدوير جهازك إلى الوضع العمودي للحصول على أفضل تجربة.'
+            }
+        };
+
+        // FIXED: Number formatting utilities
+        const numToFa = (num) => String(num).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+        const numToAr = (num) => String(num).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+        const numToEn = (num) => String(num);
+
+        // FIXED: Enhanced Font Preloading System
+        const fontFamilies = [
+            { name: 'Vazirmatn', weights: [100, 200, 300, 400, 500, 600, 700, 800, 900] },
+            { name: 'Lalezar', weights: [400] },
+            { name: 'Amiri', weights: [400, 700] },
+            { name: 'Markazi Text', weights: [400, 500, 600, 700] },
+            { name: 'Noto Naskh Arabic', weights: [400, 500, 600, 700] },
+            { name: 'Shabnam', weights: [400, 700] }
+        ];
+
+        // FIXED: Performance-optimized font preloading
+        async function preloadFonts() {
+            const fontPromises = [];
+            
+            fontFamilies.forEach(fontFamily => {
+                fontFamily.weights.forEach(weight => {
+                    const fontPromise = document.fonts.load(`${weight} 16px ${fontFamily.name}`)
+                        .then(() => {
+                            console.log(`✅ Font loaded: ${fontFamily.name} ${weight}`);
+                        })
+                        .catch(error => {
+                            console.warn(`⚠️ Font load failed: ${fontFamily.name} ${weight}`, error);
+                        });
+                    fontPromises.push(fontPromise);
+                });
+            });
+            
+            try {
+                await Promise.all([...fontPromises, document.fonts.ready]);
+                console.log('✅ All fonts successfully preloaded and ready');
+                return true;
+            } catch (error) {
+                console.warn('⚠️ Some fonts failed to preload:', error);
+                return false;
+            }
+        }
+
+        // FIXED: Image preloading
+        async function preloadImages() {
+            const criticalImages = [
+                'https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=512&h=512',
+                'https://pfst.cf2.poecdn.net/base/image/9364acf5be21b0eee6147030618bf2683bcb6c9d5f8c0b333df2670ff59a892f?w=180&h=180'
+            ];
+            
+            const loadPromises = criticalImages.map(src => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        console.log(`✅ Image preloaded: ${src.split('?')[0].split('/').pop()}`);
+                        resolve();
+                    };
+                    img.onerror = reject;
+                    img.src = src;
+                });
+            });
+
+            try {
+                await Promise.all(loadPromises);
+                console.log('✅ All critical images preloaded');
+                return true;
+            } catch (error) {
+                console.warn('⚠️ Some images failed to preload:', error);
+                return false;
+            }
+        }
+
+        // FIXED: Proper Orientation Lock
+        function lockOrientation() {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock('portrait-primary').catch(err => {
+                    console.warn('Screen orientation lock not supported:', err);
+                });
+            }
+
+            const handleOrientationChange = () => {
+                console.log('Orientation changed - CSS is handling the UI');
+            };
+            
+            appState.addEventListener(window, 'orientationchange', handleOrientationChange);
+            appState.addEventListener(window, 'resize', handleOrientationChange);
+            
+            handleOrientationChange();
+        }
+
+        // FIXED: Enhanced Alert System with Simple Animation
+        function showAlert(message) {
+            const modal = document.createElement('div');
+            modal.className = 'custom-alert-modal';
+            modal.style.cssText = 'position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:10000; backdrop-filter: blur(10px);';
+            
+            const isDark = document.body.classList.contains('night-mode');
+            const bgColor = isDark ? 'rgba(21, 46, 17, 0.95)' : 'rgba(255, 243, 227, 0.95)';
+            const textColor = isDark ? '#fff3e3' : '#152e11';
+            const borderColor = isDark ? 'rgba(255, 243, 227, 0.2)' : 'rgba(21, 46, 17, 0.2)';
+            
+            // FIXED: Simple success icon with animation
+            const successIcon = `<div class="success-icon" style="width: 50px; height: 50px; border-radius: 50%; background: var(--orange-main); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; animation: successPulse 0.6s ease-out;">
+                <svg style="width: 24px; height: 24px; stroke: white; stroke-width: 3;" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20,6 9,17 4,12"></polyline>
+                </svg>
+            </div>`;
+            
+            modal.innerHTML = `
+                <div style="background: ${bgColor}; padding: 30px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); max-width: 380px; width: 90%; text-align: center; border: 1px solid ${borderColor}; backdrop-filter: blur(20px); transform: scale(0.9); animation: modalZoomIn 0.3s ease-out forwards;">
+                    ${message.includes('ذخیره') || message.includes('saved') || message.includes('حفظ') ? successIcon : ''}
+                    <p style="color: ${textColor}; margin-bottom: 25px; font-family: 'Vazirmatn', sans-serif; line-height: 1.6; font-size: 1.1rem; font-weight: 500;">${message}</p>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: var(--orange-main); color: white; border: none; padding: 15px 30px; border-radius: 15px; cursor: pointer; font-family: 'Vazirmatn', sans-serif; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; min-width: 120px; box-shadow: 0 5px 20px rgba(255, 110, 65, 0.4);" onmouseover="this.style.background='var(--orange-dark)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--orange-main)'; this.style.transform='translateY(0)'">
+                        ${appState.currentLang === 'fa' ? 'باشه' : appState.currentLang === 'ar' ? 'حسناً' : 'OK'}
+                    </button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            setTimeout(() => {
+                if (modal.parentElement) {
+                    modal.style.opacity = '0';
+                    modal.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        modal.remove();
+                    }, 300);
+                }
+            }, 4000);
+        }
+
+        // FIXED: Enhanced Language System
+        function switchLanguage(lang) {
+            appState.currentLang = lang;
+            document.body.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+            
+            const elements = document.querySelectorAll('[data-fa][data-en][data-ar]');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'textarea')) {
+                        el.placeholder = text;
+                    } else if (el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+            });
+            
+            appState.fontPanels.forEach(panel => {
+                const input = panel.querySelector('.font-text-input');
+                if (input) {
+                    input.placeholder = translations[lang].textPlaceholder;
+                }
+            });
+            
+            updateSliderValues();
+        }
+
+        // FIXED: Enhanced Text Object System
+        function createTextObject(text = '', x = 0, y = 0) {
+            return {
+                text: text,
+                x: x,
+                y: y,
+                width: 200,
+                height: 60,
+                fontSize: 50,
+                color: '#000000',
+                opacity: 1,
+                shadowBlur: 0,
+                strokeWidth: 0,
+                glowBlur: 0,
+                backdropColor: '#FFFFFF',
+                backdropOpacity: 0,
+                backdropRadius: 0,
+                backdropWidthPercentage: 0,
+                backdropHeightPercentage: 0,
+                font: appState.currentFont
+            };
+        }
+
+        // FIXED: Professional Loading System with adaptive timing
+        async function showDACOLoading() {
+            if (!DOM.dacoLoadingScreen) return;
+            
+            DOM.dacoLoadingScreen.classList.remove('hidden');
+            
+            lockOrientation();
+            
+            const startTime = Date.now();
+            const minLoadTime = 3500;
+            
+            try {
+                const [fontsLoaded, imagesLoaded] = await Promise.allSettled([
+                    preloadFonts(),
+                    preloadImages()
+                ]);
+
+                if (fontsLoaded.status === 'fulfilled' && imagesLoaded.status === 'fulfilled') {
+                    console.log('✅ All resources successfully preloaded');
+                } else {
+                    console.warn('⚠️ Some resources failed to preload');
+                }
+            } catch (error) {
+                console.warn('⚠️ Resource preloading failed:', error);
+            }
+            
+            const elapsedTime = Date.now() - startTime;
+            const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+            
+            setTimeout(() => {
+                if (DOM.dacoLoadingScreen) {
+                    DOM.dacoLoadingScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        if (DOM.dacoLoadingScreen) {
+                            DOM.dacoLoadingScreen.style.display = 'none';
+                        }
+                    }, 800);
+                }
+            }, remainingTime);
+        }
+
+        // FIXED: Enhanced Crop Modal System
+        function initializeCropModal(imageFile) {
+            if (!DOM.cropModal || !imageFile) return;
+            
+            DOM.cropModal.classList.add('active');
+            cropState.reset();
+            
+            if (DOM.cropLoading) DOM.cropLoading.style.display = 'flex';
+            if (DOM.cropImage) DOM.cropImage.style.display = 'none';
+            
+            try {
+                if (!imageFile.type || !imageFile.type.startsWith('image/')) {
+                    throw new Error('Invalid image file');
+                }
+                
+                const imageUrl = appState.createBlobUrl(imageFile);
+                cropState.originalImage = new Image();
+                
+                cropState.originalImage.onload = () => {
+                    try {
+                        setupCrop();
+                        if (DOM.cropLoading) DOM.cropLoading.style.display = 'none';
+                        if (DOM.cropImage) DOM.cropImage.style.display = 'block';
+                    } catch (error) {
+                        console.error('Setup crop error:', error);
+                        showAlert('Error setting up crop view');
+                        DOM.cropModal.classList.remove('active');
+                    }
+                };
+                
+                cropState.originalImage.onerror = () => {
+                    showAlert(translations[appState.currentLang].alertImage || 'Error loading image');
+                    DOM.cropModal.classList.remove('active');
+                };
+                
+                cropState.originalImage.src = imageUrl;
+            } catch (error) {
+                console.error('Image processing error:', error);
+                showAlert('Error processing image file');
+                DOM.cropModal.classList.remove('active');
+            }
+        }
+
+        function setupCrop() {
+            if (!DOM.cropViewport || !cropState.originalImage) return;
+            
+            const rect = DOM.cropViewport.getBoundingClientRect();
+            const viewportWidth = rect.width;
+            const viewportHeight = rect.height;
+            
+            const frameAspectRatio = 9/16;
+            let frameWidth, frameHeight;
+            
+            frameHeight = Math.min(viewportHeight * 0.8, window.innerHeight * 0.6);
+            frameWidth = frameHeight * frameAspectRatio;
+            
+            if (frameWidth > viewportWidth * 0.8) {
+                frameWidth = viewportWidth * 0.8;
+                frameHeight = frameWidth / frameAspectRatio;
+            }
+            
+            const frameLeft = (viewportWidth - frameWidth) / 2;
+            const frameTop = (viewportHeight - frameHeight) / 2;
+            
+            if (DOM.cropFrame) {
+                DOM.cropFrame.style.left = frameLeft + 'px';
+                DOM.cropFrame.style.top = frameTop + 'px';
+                DOM.cropFrame.style.width = frameWidth + 'px';
+                DOM.cropFrame.style.height = frameHeight + 'px';
+            }
+            
+            cropState.bounds = { 
+                left: frameLeft, 
+                top: frameTop, 
+                right: frameLeft + frameWidth, 
+                bottom: frameTop + frameHeight 
+            };
+            
+            const imageAspect = cropState.originalImage.naturalWidth / cropState.originalImage.naturalHeight;
+            const frameAspect = frameWidth / frameHeight;
+            
+            if (imageAspect > frameAspect) {
+                cropState.scale = frameHeight / cropState.originalImage.naturalHeight;
+            } else {
+                cropState.scale = frameWidth / cropState.originalImage.naturalWidth;
+            }
+            
+            cropState.minScale = cropState.scale * 0.5;
+            cropState.position = { x: 0, y: 0 };
+            
+            updateCropImageDisplay();
+        }
+
+        function updateCropImageDisplay() {
+            if (!cropState.originalImage || !DOM.cropViewport || !DOM.cropImage) return;
+            
+            const rect = DOM.cropViewport.getBoundingClientRect();
+            const viewportWidth = rect.width;
+            const viewportHeight = rect.height;
+            
+            const displayWidth = cropState.originalImage.naturalWidth * cropState.scale;
+            const displayHeight = cropState.originalImage.naturalHeight * cropState.scale;
+            
+            const imageLeft = (viewportWidth - displayWidth) / 2 + cropState.position.x;
+            const imageTop = (viewportHeight - displayHeight) / 2 + cropState.position.y;
+            
+            DOM.cropImage.src = cropState.originalImage.src;
+            DOM.cropImage.style.width = displayWidth + 'px';
+            DOM.cropImage.style.height = displayHeight + 'px';
+            DOM.cropImage.style.left = imageLeft + 'px';
+            DOM.cropImage.style.top = imageTop + 'px';
+            
+            if (DOM.zoomInfo) {
+                DOM.zoomInfo.textContent = Math.round(cropState.scale * 100) + '%';
+            }
+        }
+
+        function constrainCropPosition() {
+            if (!cropState.originalImage) return;
+            
+            const rect = DOM.cropViewport.getBoundingClientRect();
+            const displayWidth = cropState.originalImage.naturalWidth * cropState.scale;
+            const displayHeight = cropState.originalImage.naturalHeight * cropState.scale;
+            
+            const frameWidth = cropState.bounds.right - cropState.bounds.left;
+            const frameHeight = cropState.bounds.bottom - cropState.bounds.top;
+            
+            const maxOffsetX = Math.max(0, (displayWidth - frameWidth) / 2);
+            const maxOffsetY = Math.max(0, (displayHeight - frameHeight) / 2);
+            
+            cropState.position.x = Math.max(-maxOffsetX, Math.min(maxOffsetX, cropState.position.x));
+            cropState.position.y = Math.max(-maxOffsetY, Math.min(maxOffsetY, cropState.position.y));
+        }
+
+        // FIXED: Enhanced Touch Handlers for Crop
+        function handleCropStart(e) {
+            if (e.touches && e.touches.length === 2) {
+                cropState.isPinching = true;
+                cropState.isDragging = false;
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                cropState.initialDistance = Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+                cropState.initialScale = cropState.scale;
+            } else {
+                cropState.isDragging = true;
+                cropState.isPinching = false;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                cropState.lastTouchPos = { x: clientX, y: clientY };
+            }
+            
+            e.preventDefault();
+        }
+
+        function handleCropMove(e) {
+            e.preventDefault();
+            
+            if (cropState.isPinching && e.touches && e.touches.length === 2) {
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = Math.hypot(
+                    touch2.clientX - touch1.clientX,
+                    touch2.clientY - touch1.clientY
+                );
+                
+                const scaleFactor = currentDistance / cropState.initialDistance;
+                cropState.scale = Math.max(
+                    cropState.minScale, 
+                    Math.min(cropState.maxScale, cropState.initialScale * scaleFactor)
+                );
+                
+                constrainCropPosition();
+                updateCropImageDisplay();
+            } else if (cropState.isDragging) {
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                
+                const deltaX = clientX - cropState.lastTouchPos.x;
+                const deltaY = clientY - cropState.lastTouchPos.y;
+                
+                cropState.position.x += deltaX;
+                cropState.position.y += deltaY;
+                
+                constrainCropPosition();
+                updateCropImageDisplay();
+                
+                cropState.lastTouchPos = { x: clientX, y: clientY };
+            }
+        }
+
+        function handleCropEnd(e) {
+            if (e.touches && e.touches.length > 0) return;
+            
+            cropState.isDragging = false;
+            cropState.isPinching = false;
+        }
+
+        function handleCropWheel(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? 0.9 : 1.1;
+            cropState.scale = Math.max(
+                cropState.minScale, 
+                Math.min(cropState.maxScale, cropState.scale * delta)
+            );
+            constrainCropPosition();
+            updateCropImageDisplay();
+        }
+
+        // FIXED: Apply Crop Function
+        function applyCrop() {
+            if (!cropState.originalImage || !DOM.cropViewport) return;
+            
+            const rect = DOM.cropViewport.getBoundingClientRect();
+            const viewportWidth = rect.width;
+            const viewportHeight = rect.height;
+            
+            const displayWidth = cropState.originalImage.naturalWidth * cropState.scale;
+            const displayHeight = cropState.originalImage.naturalHeight * cropState.scale;
+            
+            const imageLeft = (viewportWidth - displayWidth) / 2 + cropState.position.x;
+            const imageTop = (viewportHeight - displayHeight) / 2 + cropState.position.y;
+            
+            const frameLeft = cropState.bounds.left;
+            const frameTop = cropState.bounds.top;
+            const frameWidth = cropState.bounds.right - cropState.bounds.left;
+            const frameHeight = cropState.bounds.bottom - cropState.bounds.top;
+            
+            const sourceX = Math.max(0, (frameLeft - imageLeft) / cropState.scale);
+            const sourceY = Math.max(0, (frameTop - imageTop) / cropState.scale);
+            const sourceWidth = Math.min(
+                cropState.originalImage.naturalWidth - sourceX, 
+                frameWidth / cropState.scale
+            );
+            const sourceHeight = Math.min(
+                cropState.originalImage.naturalHeight - sourceY, 
+                frameHeight / cropState.scale
+            );
+            
+            const finalCanvas = document.createElement('canvas');
+            const finalCtx = finalCanvas.getContext('2d');
+            
+            const minResolution = 2048;
+            const scale = Math.max(1, minResolution / Math.max(frameWidth, frameHeight));
+            
+            finalCanvas.width = Math.round(frameWidth * scale);
+            finalCanvas.height = Math.round(frameHeight * scale);
+            
+            finalCtx.imageSmoothingEnabled = true;
+            finalCtx.imageSmoothingQuality = 'high';
+            
+            finalCtx.drawImage(
+                cropState.originalImage,
+                sourceX, sourceY, sourceWidth, sourceHeight,
+                0, 0, finalCanvas.width, finalCanvas.height
+            );
+            
+            finalCanvas.toBlob(blob => {
+                const url = appState.createBlobUrl(blob);
+                appState.img = new Image();
+                appState.img.onload = () => {
+                    appState.revokeBlobUrl(url);
+                    loadImageToCanvas();
+                    DOM.cropModal.classList.remove('active');
+                    
+                    cropState.reset();
+                    
+                    setTimeout(() => {
+                        updateCanvasBounds();
+                        scheduleDraw();
+                        
+                        if (!appState.eventListeners.size) {
+                            console.log('🔄 Re-initializing event listeners after image load');
+                            setupEventListeners();
+                        }
+                    }, 100);
+                };
+                appState.img.src = url;
+            }, 'image/png');
+        }
+
+        // FIXED: Load Image to Canvas
+        function loadImageToCanvas() {
+            if (!appState.img || !DOM.canvas || !ctx) return;
+            
+            const originalWidth = appState.img.naturalWidth || appState.img.width;
+            const originalHeight = appState.img.naturalHeight || appState.img.height;
+            
+            const targetAspectRatio = 9/16;
+            let canvasWidth, canvasHeight;
+            
+            if (originalWidth / originalHeight > targetAspectRatio) {
+                canvasHeight = originalHeight;
+                canvasWidth = Math.round(canvasHeight * targetAspectRatio);
+            } else {
+                canvasWidth = originalWidth;
+                canvasHeight = Math.round(canvasWidth / targetAspectRatio);
+            }
+            
+            const minResolution = 2048;
+            if (Math.max(canvasWidth, canvasHeight) < minResolution) {
+                const scale = minResolution / Math.max(canvasWidth, canvasHeight);
+                canvasWidth = Math.round(canvasWidth * scale);
+                canvasHeight = Math.round(canvasHeight * scale);
+            }
+            
+            const maxResolution = 4096;
+            if (Math.max(canvasWidth, canvasHeight) > maxResolution) {
+                const scale = maxResolution / Math.max(canvasWidth, canvasHeight);
+                canvasWidth = Math.round(canvasWidth * scale);
+                canvasHeight = Math.round(canvasHeight * scale);
+            }
+            
+            DOM.canvas.width = canvasWidth;
+            DOM.canvas.height = canvasHeight;
+            
+            appState.resetImageState();
+            
+            if (DOM.deleteImageBtn) DOM.deleteImageBtn.style.display = 'flex';
+            if (DOM.photoPlaceholder) DOM.photoPlaceholder.style.display = 'none';
+            
+            updateCanvasBounds();
+            scheduleDraw();
+            
+            console.log('✅ Image loaded to canvas successfully');
+        }
+
+        // FIXED: Enhanced Canvas Drawing System
+        function drawCanvas() {
+            if (!DOM.canvas || !ctx) return;
+            
+            if (!appState.img && appState.textObjects.every(t => !t.text.trim())) {
+                drawEmptyCanvas();
+                return;
+            }
+            
+            if (DOM.photoPlaceholder) DOM.photoPlaceholder.style.display = 'none';
+            
+            ctx.clearRect(0, 0, DOM.canvas.width, DOM.canvas.height);
+            
+            if (appState.img) {
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = 'high';
+                ctx.drawImage(appState.img, 0, 0, DOM.canvas.width, DOM.canvas.height);
+            } else {
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fillRect(0, 0, DOM.canvas.width, DOM.canvas.height);
+            }
+            
+            updateCanvasWrapperSize();
+            updateCanvasBounds();
+            
+            drawTextObjects();
+        }
+
+        function drawEmptyCanvas() {
+            if (!DOM.canvas || !ctx) return;
+            
+            const targetRatio = 9/16;
+            const containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
+            
+            let canvasWidth, canvasHeight;
+            const containerAspect = containerRect.width / containerRect.height;
+            
+            if (targetRatio > containerAspect) {
+                canvasWidth = Math.min(containerRect.width * 0.8, 400);
+                canvasHeight = canvasWidth / targetRatio;
+            } else {
+                canvasHeight = Math.min(containerRect.height * 0.8, 600);
+                canvasWidth = canvasHeight * targetRatio;
+            }
+            
+            DOM.canvas.width = canvasWidth;
+            DOM.canvas.height = canvasHeight;
+            
+            if (DOM.canvasWrapper) {
+                DOM.canvasWrapper.style.width = canvasWidth + 'px';
+                DOM.canvasWrapper.style.height = canvasHeight + 'px';
+            }
+            
+            ctx.fillStyle = "#eee";
+            ctx.fillRect(0, 0, DOM.canvas.width, DOM.canvas.height);
+            
+            if (DOM.photoPlaceholder) DOM.photoPlaceholder.style.display = 'flex';
+            updateCanvasBounds();
+        }
+
+        function updateCanvasWrapperSize() {
+            if (!DOM.canvasWrapper) return;
+            
+            const targetRatio = 9/16;
+            const container = document.querySelector('.canvas-container');
+            if (!container) return;
+            
+            const containerRect = container.getBoundingClientRect();
+            
+            let displayWidth, displayHeight;
+            const containerAspect = containerRect.width / containerRect.height;
+            
+            if (targetRatio > containerAspect) {
+                displayWidth = Math.min(containerRect.width * 0.9, 600);
+                displayHeight = displayWidth / targetRatio;
+            } else {
+                displayHeight = Math.min(containerRect.height * 0.9, 700);
+                displayWidth = displayHeight * targetRatio;
+            }
+            
+            DOM.canvasWrapper.style.width = Math.round(displayWidth) + 'px';
+            DOM.canvasWrapper.style.height = Math.round(displayHeight) + 'px';
+        }
+
+        function drawTextObjects() {
+            if (!ctx) return;
+            
+            appState.textObjects.forEach((textObj, index) => {
+                if (!textObj.text.trim()) return;
+
+                drawTextObject(textObj, index === appState.selectedTextIndex);
+            });
+            
+            ctx.globalAlpha = 1;
+            ctx.shadowBlur = 0;
+        }
+
+        function drawTextObject(textObj, isSelected = false) {
+            if (!ctx) return;
+            
+            const textLines = textObj.text.split('\n');
+            const isRTLText = /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F]/.test(textObj.text);
+            
+            let baseFontSize = textObj.fontSize;
+            let calculatedFontSize = Math.max(16, (baseFontSize / 100) * Math.min(DOM.canvas.width, DOM.canvas.height) * 0.12);
+            
+            ctx.font = `${calculatedFontSize}px ${textObj.font}`;
+            
+            let maxTextWidth = 0;
+            textLines.forEach(line => {
+                const metrics = measureText(line, textObj.font, calculatedFontSize);
+                maxTextWidth = Math.max(maxTextWidth, metrics.width);
+            });
+            
+            if (maxTextWidth > DOM.canvas.width * 0.95) {
+                calculatedFontSize *= (DOM.canvas.width * 0.95) / maxTextWidth;
+                calculatedFontSize = Math.max(12, calculatedFontSize);
+            }
+            
+            ctx.font = `${calculatedFontSize}px ${textObj.font}`;
+            
+            maxTextWidth = 0;
+            textLines.forEach(line => {
+                const metrics = measureText(line, textObj.font, calculatedFontSize);
+                maxTextWidth = Math.max(maxTextWidth, metrics.width);
+            });
+            
+            const lineHeight = calculatedFontSize * 1.3;
+            const backdropPaddingX = (textObj.backdropWidthPercentage / 100) * maxTextWidth;
+            const backdropPaddingY = (textObj.backdropHeightPercentage / 100) * (lineHeight * textLines.length);
+            
+            textObj.width = maxTextWidth + backdropPaddingX;
+            textObj.height = (lineHeight * textLines.length) + backdropPaddingY;
+            
+            textObj.x = Math.max(0, Math.min(textObj.x, DOM.canvas.width - textObj.width));
+            textObj.y = Math.max(0, Math.min(textObj.y, DOM.canvas.height - textObj.height));
+
+            if (textObj.backdropOpacity > 0) {
+                drawTextBackdrop(textObj, calculatedFontSize);
+            }
+            
+            drawTextContent(textObj, textLines, calculatedFontSize, lineHeight, isRTLText);
+            
+            if (isSelected) {
+                drawSelectionBorder(textObj, calculatedFontSize);
+            }
+        }
+
+        function drawTextBackdrop(textObj, fontSize) {
+            if (!ctx) return;
+            
+            ctx.fillStyle = textObj.backdropColor;
+            ctx.globalAlpha = textObj.backdropOpacity;
+            
+            const radius = Math.max(0, (textObj.backdropRadius / 100) * Math.min(textObj.width, textObj.height) / 2);
+            
+            if (radius > 0) {
+                ctx.beginPath();
+                ctx.moveTo(textObj.x + radius, textObj.y);
+                ctx.arcTo(textObj.x + textObj.width, textObj.y, textObj.x + textObj.width, textObj.y + textObj.height, radius);
+                ctx.arcTo(textObj.x + textObj.width, textObj.y + textObj.height, textObj.x, textObj.y + textObj.height, radius);
+                ctx.arcTo(textObj.x, textObj.y + textObj.height, textObj.x, textObj.y, radius);
+                ctx.arcTo(textObj.x, textObj.y, textObj.x + textObj.width, textObj.y, radius);
+                ctx.closePath();
+                ctx.fill();
+            } else {
+                ctx.fillRect(textObj.x, textObj.y, textObj.width, textObj.height);
+            }
+            
+            ctx.globalAlpha = 1;
+        }
+
+        function drawTextContent(textObj, textLines, fontSize, lineHeight, isRTL) {
+            if (!ctx) return;
+            
+            ctx.font = `${fontSize}px ${textObj.font}`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
+            ctx.shadowColor = `rgba(0,0,0,0.5)`;
+            ctx.shadowBlur = Math.max(0, textObj.shadowBlur * (fontSize / 50));
+            ctx.strokeStyle = `rgb(0,0,0)`;
+            ctx.lineWidth = Math.max(0, textObj.strokeWidth * (fontSize / 50));
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            
+            let lineY = textObj.y + (textObj.height / 2) - (((textLines.length - 1) * lineHeight) / 2);
+            
+            textLines.forEach(line => {
+                const x = textObj.x + textObj.width / 2;
+                
+                if (textObj.strokeWidth > 0) {
+                    ctx.strokeText(line, x, lineY);
+                }
+                
+                if (textObj.glowBlur > 0) {
+                    ctx.shadowColor = textObj.color;
+                    ctx.shadowBlur = Math.max(0, textObj.glowBlur * (fontSize / 50));
+                }
+                
+                ctx.fillStyle = textObj.color;
+                ctx.globalAlpha = Math.max(0, Math.min(1, textObj.opacity));
+                
+                renderTextWithBiDiSupport(ctx, line, x, lineY, textObj.font, isRTL);
+                
+                ctx.shadowBlur = Math.max(0, textObj.shadowBlur * (fontSize / 50));
+                ctx.shadowColor = `rgba(0,0,0,0.5)`;
+                
+                lineY += lineHeight;
+            });
+        }
+
+        function drawSelectionBorder(textObj, fontSize) {
+            if (!ctx) return;
+            
+            ctx.globalAlpha = 1;
+            
+            const shouldFade = appState.borderFadeTimeout !== null;
+            const borderOpacity = shouldFade ? 0.2 : 0.8;
+            
+            ctx.strokeStyle = `rgba(27, 59, 20, ${borderOpacity})`;
+            ctx.lineWidth = Math.max(3, fontSize / 20);
+            ctx.setLineDash([Math.max(8, fontSize / 8), Math.max(4, fontSize / 16)]);
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            const cornerRadius = Math.max(8, fontSize / 8);
+            const padding = Math.max(4, fontSize / 16);
+            const x = textObj.x - padding;
+            const y = textObj.y - padding;
+            const width = textObj.width + padding * 2;
+            const height = textObj.height + padding * 2;
+            
+            ctx.beginPath();
+            ctx.moveTo(x + cornerRadius, y);
+            ctx.arcTo(x + width, y, x + width, y + height, cornerRadius);
+            ctx.arcTo(x + width, y + height, x, y + height, cornerRadius);
+            ctx.arcTo(x, y + height, x, y, cornerRadius);
+            ctx.arcTo(x, y, x + width, y, cornerRadius);
+            ctx.closePath();
+            ctx.stroke();
+            
+            ctx.setLineDash([]);
+        }
+
+        // FIXED: BiDi text rendering
+        function renderTextWithBiDiSupport(ctx, text, x, y, font, isRTL = false) {
+            const currentDirection = ctx.direction;
+            const currentTextAlign = ctx.textAlign;
+            
+            if (isRTL || /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F]/.test(text)) {
+                ctx.direction = 'rtl';
+            } else {
+                ctx.direction = 'ltr';
+            }
+            
+            ctx.fillText(text, x, y);
+            
+            ctx.direction = currentDirection;
+            ctx.textAlign = currentTextAlign;
+        }
+
+        // FIXED: Optimized text measurement using global canvas
+        function measureText(text, font, fontSize) {
+            measurementCtx.font = `${fontSize}px ${font}`;
+            return measurementCtx.measureText(text);
+        }
+
+        // FIXED: Enhanced Canvas Bounds System using CSS variables
+        function updateCanvasBounds() {
+            if (!DOM.canvasWrapper) return;
+            
+            const container = document.querySelector('.canvas-container');
+            if (!container) return;
+            
+            const containerRect = container.getBoundingClientRect();
+            const wrapperRect = DOM.canvasWrapper.getBoundingClientRect();
+            
+            // Get values from CSS variables
+            const computedStyles = getComputedStyle(document.documentElement);
+            const headerHeight = parseInt(computedStyles.getPropertyValue('--header-height'), 10) || 120;
+            const footerHeight = parseInt(computedStyles.getPropertyValue('--footer-height'), 10) || 110;
+            const safeMargin = 15;
+            const minVisiblePercent = 0.4;
+            
+            appState.canvasBounds = {
+                left: safeMargin - wrapperRect.width * (1 - minVisiblePercent),
+                top: headerHeight + safeMargin - wrapperRect.height * (1 - minVisiblePercent),
+                right: window.innerWidth - safeMargin + wrapperRect.width * (1 - minVisiblePercent),
+                bottom: window.innerHeight - footerHeight - safeMargin + wrapperRect.height * (1 - minVisiblePercent)
+            };
+        }
+
+        function constrainCanvasPosition(rect) {
+            const currentLeft = rect.left;
+            const currentTop = rect.top;
+            
+            let newLeft = currentLeft;
+            let newTop = currentTop;
+            
+            if (currentLeft < appState.canvasBounds.left) {
+                newLeft = appState.canvasBounds.left;
+            } else if (currentLeft > appState.canvasBounds.right - rect.width) {
+                newLeft = appState.canvasBounds.right - rect.width;
+            }
+            
+            if (currentTop < appState.canvasBounds.top) {
+                newTop = appState.canvasBounds.top;
+            } else if (currentTop > appState.canvasBounds.bottom - rect.height) {
+                newTop = appState.canvasBounds.bottom - rect.height;
+            }
+            
+            return { left: newLeft, top: newTop };
+        }
+
+        // FIXED: Enhanced Canvas Centering
+        function centerCanvas() {
+            if (!DOM.canvasWrapper) return;
+            
+            DOM.canvasWrapper.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            DOM.canvasWrapper.style.transform = 'translate(-50%, -50%)';
+            DOM.canvasWrapper.style.left = '50%';
+            DOM.canvasWrapper.style.top = '50%';
+            
+            setTimeout(() => {
+                if (DOM.canvasWrapper) {
+                    DOM.canvasWrapper.style.transition = '';
+                }
+            }, 600);
+        }
+
+        // FIXED: Font Panel Management with Better Text Input
+        function addFontPanel() {
+            if (appState.fontPanels.length >= appState.maxTextObjects) {
+                showAlert(translations[appState.currentLang].maxPanels);
+                return;
+            }
+
+            const panelDiv = document.createElement('div');
+            panelDiv.className = 'font-panel';
+            panelDiv.innerHTML = `
+                <textarea placeholder="${translations[appState.currentLang].textPlaceholder}" class="font-text-input" rows="1"></textarea>
+                <button class="remove-font">×</button>
+            `;
+            
+            const textInput = panelDiv.querySelector('.font-text-input');
+            const removeBtn = panelDiv.querySelector('.remove-font');
+
+            function autoResizeTextarea(textarea) {
+                const maxHeight = 60;
+                textarea.style.height = 'auto';
+                const newHeight = Math.min(textarea.scrollHeight, maxHeight);
+                textarea.style.height = newHeight + 'px';
+                
+                if (textarea.scrollHeight > maxHeight) {
+                    textarea.classList.add('scrollable');
+                } else {
+                    textarea.classList.remove('scrollable');
+                }
+            }
+
+            appState.addEventListener(textInput, 'input', (e) => {
+                const panelIndex = appState.fontPanels.indexOf(panelDiv);
+                if (appState.textObjects[panelIndex]) {
+                    appState.textObjects[panelIndex].text = e.target.value;
+                    scheduleDraw();
+                }
+                autoResizeTextarea(e.target);
+            });
+            
+            appState.addEventListener(textInput, 'focus', () => {
+                const panelIndex = appState.fontPanels.indexOf(panelDiv);
+                selectTextObject(panelIndex);
+            });
+
+            appState.addEventListener(panelDiv, 'click', (e) => {
+                if (e.detail !== 1) return;
+                const panelIndex = appState.fontPanels.indexOf(panelDiv);
+                selectTextObject(panelIndex);
+            });
+
+            appState.addEventListener(panelDiv, 'dblclick', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const panelIndex = appState.fontPanels.indexOf(panelDiv);
+                selectTextObject(panelIndex);
+                
+                const textPanel = document.getElementById('textPanel');
+                if (textPanel && !textPanel.classList.contains('active')) {
+                    openPanel('text');
+                }
+            });
+
+            let panelLastTouchTime = 0;
+            let panelTouchCount = 0;
+
+            appState.addEventListener(panelDiv, 'touchend', (e) => {
+                const now = Date.now();
+                if (now - panelLastTouchTime < 300) {
+                    panelTouchCount++;
+                    if (panelTouchCount === 2) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const panelIndex = appState.fontPanels.indexOf(panelDiv);
+                        selectTextObject(panelIndex);
+                        
+                        const textPanel = document.getElementById('textPanel');
+                        if (textPanel && !textPanel.classList.contains('active')) {
+                            openPanel('text');
+                        }
+                        panelTouchCount = 0;
+                    }
+                } else {
+                    panelTouchCount = 1;
+                }
+                panelLastTouchTime = now;
+            });
+
+            appState.addEventListener(textInput, 'keydown', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    setTimeout(() => autoResizeTextarea(e.target), 0);
+                }
+            });
+
+            autoResizeTextarea(textInput);
+            
+            appState.addEventListener(removeBtn, 'click', () => {
+                removeFontPanel(panelDiv);
+            });
+            
+            if (DOM.fontPanelsContainer) {
+                DOM.fontPanelsContainer.appendChild(panelDiv);
+            }
+            appState.fontPanels.push(panelDiv);
+
+            const textObj = createTextObject(
+                '', 
+                DOM.canvas.width / 2 - 100, 
+                (DOM.canvas.height / 2 - 30) + (appState.textObjects.length * 80)
+            );
+            appState.textObjects.push(textObj);
+
+            if (appState.fontPanels.length >= appState.maxTextObjects && DOM.addFontPanelBtn) {
+                DOM.addFontPanelBtn.disabled = true;
+            }
+
+            selectTextObject(appState.textObjects.length - 1);
+            scheduleDraw();
+        }
+
+        function removeFontPanel(panelDiv) {
+            const index = appState.fontPanels.indexOf(panelDiv);
+            if (index > -1) {
+                appState.fontPanels.splice(index, 1);
+                appState.textObjects.splice(index, 1);
+                panelDiv.remove();
+                
+                if (DOM.addFontPanelBtn) {
+                    DOM.addFontPanelBtn.disabled = appState.fontPanels.length >= appState.maxTextObjects;
+                }
+                
+                if (appState.selectedTextIndex >= index) {
+                    appState.selectedTextIndex = Math.max(0, appState.selectedTextIndex - 1);
+                }
+                if (appState.textObjects.length === 0) {
+                    appState.selectedTextIndex = -1;
+                }
+                
+                updateUIFromSelectedText();
+                scheduleDraw();
+            }
+        }
+
+        function selectTextObject(index) {
+            if (index >= 0 && index < appState.textObjects.length) {
+                appState.selectedTextIndex = index;
+                
+                appState.fontPanels.forEach((panel, i) => {
+                    panel.classList.toggle('selected', i === index);
+                });
+                
+                updateUIFromSelectedText();
+                scheduleDraw();
+                
+                if (appState.selectionBorderTimeout) {
+                    clearTimeout(appState.selectionBorderTimeout);
+                }
+                if (appState.borderFadeTimeout) {
+                    clearTimeout(appState.borderFadeTimeout);
+                }
+                
+                appState.selectionBorderTimeout = setTimeout(() => {
+                    appState.borderFadeTimeout = setTimeout(() => {
+                        scheduleDraw();
+                    }, 100);
+                }, 5000);
+            }
+        }
+
+        function updateUIFromSelectedText() {
+            if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                const textObj = appState.textObjects[appState.selectedTextIndex];
+                
+                if (DOM.fontSizeSlider) DOM.fontSizeSlider.value = textObj.fontSize;
+                if (DOM.opacitySlider) DOM.opacitySlider.value = textObj.opacity * 100;
+                if (DOM.shadowSlider) DOM.shadowSlider.value = textObj.shadowBlur;
+                if (DOM.strokeSlider) DOM.strokeSlider.value = textObj.strokeWidth;
+                if (DOM.glowSlider) DOM.glowSlider.value = textObj.glowBlur;
+                if (DOM.backdropOpacitySlider) DOM.backdropOpacitySlider.value = textObj.backdropOpacity * 100;
+                if (DOM.backdropRadiusSlider) DOM.backdropRadiusSlider.value = textObj.backdropRadius;
+                if (DOM.backdropWidthSlider) DOM.backdropWidthSlider.value = textObj.backdropWidthPercentage;
+                if (DOM.backdropHeightSlider) DOM.backdropHeightSlider.value = textObj.backdropHeightPercentage;
+                if (DOM.fontSelector) DOM.fontSelector.value = textObj.font;
+                
+                const hexColor = textObj.color.includes('rgb') ? rgbToHex(textObj.color) : textObj.color;
+                if (DOM.textColorGrid) {
+                    DOM.textColorGrid.querySelectorAll('.color-grid-swatch').forEach(s => {
+                        s.classList.toggle('active', s.dataset.color.toLowerCase() === hexColor.toLowerCase());
+                    });
+                }
+                
+                const hexBgColor = textObj.backdropColor.includes('rgb') ? rgbToHex(textObj.backdropColor) : textObj.backdropColor;
+                if (DOM.bgColorGrid) {
+                    DOM.bgColorGrid.querySelectorAll('.color-grid-swatch').forEach(s => {
+                        s.classList.toggle('active', s.dataset.color.toLowerCase() === hexBgColor.toLowerCase());
+                    });
+                }
+                
+                updateSliderValues();
+            }
+        }
+
+        function rgbToHex(rgb) {
+            const result = rgb.match(/\d+/g);
+            if (result && result.length >= 3) {
+                return "#" + ((1 << 24) + (parseInt(result[0], 10) << 16) + (parseInt(result[1], 10) << 8) + parseInt(result[2], 10)).toString(16).slice(1);
+            }
+            return rgb;
+        }
+
+        // FIXED: Clean Color Grid Creation (no checkmarks)
+        const colorPalette = [
+            '#000000', '#4b5563', '#6b7280', '#9ca3af', '#d1d5db', '#ffffff',
+            '#ef4444', '#f87171', '#f97316', '#fb923c', '#eab308', '#facc15',
+            '#84cc16', '#a3e635', '#22c55e', '#4ade80', '#14b8a6', '#2dd4bf',
+            '#06b6d4', '#22d3ee', '#3b82f6', '#60a5fa', '#8b5cf6', '#a78bfa',
+            '#d946ef', '#e879f9', '#ec4899', '#f472b6'
+        ];
+        
+        function createColorGrid(container, onColorSelect) {
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            colorPalette.forEach(color => {
+                const swatch = document.createElement('button');
+                swatch.className = 'color-grid-swatch';
+                swatch.style.backgroundColor = color;
+                swatch.dataset.color = color;
+                swatch.setAttribute('aria-label', `Select color ${color}`);
+                
+                appState.addEventListener(swatch, 'click', () => {
+                    container.querySelectorAll('.color-grid-swatch').forEach(s => s.classList.remove('active'));
+                    swatch.classList.add('active');
+                    onColorSelect(color);
+                });
+                
+                container.appendChild(swatch);
+            });
+            
+            console.log(`✅ Color grid created with ${colorPalette.length} colors`);
+        }
+
+        // FIXED: Enhanced UI Management
+        function openPanel(panelId) {
+            DOM.accordionPanels.forEach(p => p.classList.remove('active'));
+            DOM.controlIcons.forEach(i => i.classList.remove('active'));
+            
+            const panel = document.getElementById(panelId + 'Panel');
+            const icon = document.querySelector(`[data-panel="${panelId}"]`);
+            
+            if (panel) panel.classList.add('active');
+            if (icon) icon.classList.add('active');
+        }
+
+        function closePanel(panelId) {
+            const panel = document.getElementById(panelId + 'Panel');
+            const icon = document.querySelector(`[data-panel="${panelId}"]`);
+            
+            if (panel) panel.classList.remove('active');
+            if (icon) icon.classList.remove('active');
+        }
+
+        function updateSliderValues() {
+            const numFormat = appState.currentLang === 'fa' ? numToFa : 
+                             appState.currentLang === 'ar' ? numToAr : numToEn;
+            const percentSymbol = appState.currentLang === 'fa' ? '٪' : 
+                                 appState.currentLang === 'ar' ? '٪' : '%';
+            
+            if (DOM.fontSizeValue) DOM.fontSizeValue.textContent = numFormat(Math.round(DOM.fontSizeSlider?.value || 50));
+            if (DOM.opacityValue) DOM.opacityValue.textContent = numFormat(DOM.opacitySlider?.value || 100) + percentSymbol;
+            if (DOM.shadowValue) DOM.shadowValue.textContent = numFormat(DOM.shadowSlider?.value || 0);
+            if (DOM.strokeValue) DOM.strokeValue.textContent = numFormat(DOM.strokeSlider?.value || 0);
+            if (DOM.glowValue) DOM.glowValue.textContent = numFormat(DOM.glowSlider?.value || 0);
+            if (DOM.backdropOpacityValue) DOM.backdropOpacityValue.textContent = numFormat(DOM.backdropOpacitySlider?.value || 0) + percentSymbol;
+            if (DOM.backdropRadiusValue) DOM.backdropRadiusValue.textContent = numFormat(DOM.backdropRadiusSlider?.value || 0);
+            if (DOM.backdropWidthValue) DOM.backdropWidthValue.textContent = numFormat(DOM.backdropWidthSlider?.value || 0);
+            if (DOM.backdropHeightValue) DOM.backdropHeightValue.textContent = numFormat(DOM.backdropHeightSlider?.value || 0);
+        }
+
+        // FIXED: Guide Lines System
+        function showGuideLines(textBox) {
+            if (!DOM.canvas || !DOM.verticalGuide || !DOM.horizontalGuide) return;
+            
+            const centerX = DOM.canvas.width / 2;
+            const centerY = DOM.canvas.height / 2;
+            const textCenterX = textBox.x + textBox.width / 2;
+            const textCenterY = textBox.y + textBox.height / 2;
+            
+            const threshold = 10;
+            
+            if (Math.abs(textCenterX - centerX) < threshold) {
+                DOM.verticalGuide.classList.add('active');
+                textBox.x = centerX - textBox.width / 2;
+            } else {
+                DOM.verticalGuide.classList.remove('active');
+            }
+            
+            if (Math.abs(textCenterY - centerY) < threshold) {
+                DOM.horizontalGuide.classList.add('active');
+                textBox.y = centerY - textBox.height / 2;
+            } else {
+                DOM.horizontalGuide.classList.remove('active');
+            }
+        }
+
+        function hideGuideLines() {
+            if (DOM.verticalGuide) DOM.verticalGuide.classList.remove('active');
+            if (DOM.horizontalGuide) DOM.horizontalGuide.classList.remove('active');
+        }
+
+        // FIXED: Enhanced Touch and Mouse Handling
+        function getPointerPos(e, el) {
+            const rect = el.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return { x: clientX - rect.left, y: clientY - rect.top };
+        }
+        
+        function getCanvasPos(e) {
+            if (!DOM.canvas) return { x: 0, y: 0 };
+            
+            const rect = DOM.canvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return { 
+                x: (clientX - rect.left) * (DOM.canvas.width / rect.width), 
+                y: (clientY - rect.top) * (DOM.canvas.height / rect.height) 
+            };
+        }
+
+        function handleStart(e) {
+            if (e.touches && e.touches.length === 2) {
+                e.preventDefault();
+                appState.isPinching = true;
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                appState.initialPinchDistance = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                    appState.lastFontSize = appState.textObjects[appState.selectedTextIndex].fontSize;
+                }
+                return;
+            }
+
+            const canvasPos = getCanvasPos(e);
+            let clickedTextIndex = -1;
+            
+            for (let i = appState.textObjects.length - 1; i >= 0; i--) {
+                const textObj = appState.textObjects[i];
+                if (canvasPos.x >= textObj.x && canvasPos.x <= textObj.x + textObj.width &&
+                    canvasPos.y >= textObj.y && canvasPos.y <= textObj.y + textObj.height) {
+                    clickedTextIndex = i;
+                    break;
+                }
+            }
+            
+            if (clickedTextIndex >= 0) {
+                appState.isDraggingText = true;
+                appState.selectedTextIndex = clickedTextIndex;
+                selectTextObject(appState.selectedTextIndex);
+                appState.dragStart.x = canvasPos.x - appState.textObjects[appState.selectedTextIndex].x;
+                appState.dragStart.y = canvasPos.y - appState.textObjects[appState.selectedTextIndex].y;
+                showGuideLines(appState.textObjects[appState.selectedTextIndex]);
+            } else if (DOM.canvasWrapper) {
+                appState.isDraggingCanvas = true;
+                const pointerPos = getPointerPos(e, DOM.canvasWrapper.parentElement);
+                const rect = DOM.canvasWrapper.getBoundingClientRect();
+                appState.dragStart.x = pointerPos.x - rect.left;
+                appState.dragStart.y = pointerPos.y - rect.top;
+                DOM.canvasWrapper.style.transition = '';
+            }
+        }
+
+        function handleMove(e) {
+            if (e.touches && e.touches.length === 2 && appState.isPinching) {
+                e.preventDefault();
+                const t1 = e.touches[0];
+                const t2 = e.touches[1];
+                const currentDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+                const scale = currentDist / appState.initialPinchDistance;
+                
+                if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                    const newFontSize = Math.max(10, Math.min(200, appState.lastFontSize * scale));
+                    appState.textObjects[appState.selectedTextIndex].fontSize = newFontSize;
+                    if (DOM.fontSizeSlider) DOM.fontSizeSlider.value = newFontSize;
+                    updateSliderValues();
+                    scheduleDraw();
+                }
+                return;
+            }
+
+            if (appState.isDraggingText && appState.selectedTextIndex >= 0) {
+                const canvasPos = getCanvasPos(e);
+                const textObj = appState.textObjects[appState.selectedTextIndex];
+                const newX = Math.max(0, Math.min(canvasPos.x - appState.dragStart.x, DOM.canvas.width - textObj.width));
+                const newY = Math.max(0, Math.min(canvasPos.y - appState.dragStart.y, DOM.canvas.height - textObj.height));
+                
+                textObj.x = newX;
+                textObj.y = newY;
+                
+                showGuideLines(textObj);
+                scheduleDraw();
+            } else if (appState.isDraggingCanvas && DOM.canvasWrapper) {
+                e.preventDefault();
+                const pointerPos = getPointerPos(e, DOM.canvasWrapper.parentElement);
+                const newLeft = pointerPos.x - appState.dragStart.x;
+                const newTop = pointerPos.y - appState.dragStart.y;
+                
+                const rect = DOM.canvasWrapper.getBoundingClientRect();
+                const constrainedPos = constrainCanvasPosition({
+                    left: newLeft,
+                    top: newTop,
+                    width: rect.width,
+                    height: rect.height
+                });
+                
+                DOM.canvasWrapper.style.left = `${constrainedPos.left}px`;
+                DOM.canvasWrapper.style.top = `${constrainedPos.top}px`;
+                DOM.canvasWrapper.style.transform = 'translate(0, 0)';
+            }
+        }
+
+        function handleEnd(e) {
+            if (e.touches && e.touches.length > 0) return;
+            
+            if (appState.isDraggingCanvas && DOM.canvasWrapper) {
+                DOM.canvasWrapper.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }
+            
+            appState.isDraggingText = false;
+            appState.isDraggingCanvas = false;
+            appState.isPinching = false;
+            
+            hideGuideLines();
+        }
+
+        // FIXED: Enhanced Download System with Guaranteed Transparent Background
+        async function saveToGallery() {
+            if (!appState.img && appState.textObjects.length === 0) {
+                showAlert(translations[appState.currentLang].alertImage);
+                return;
+            }
+            
+            try {
+                const blob = await generateImageBlob('jpeg', 0.95);
+                
+                if (navigator.share) {
+                    try {
+                        const file = new File([blob], `daco-story-high-quality-9x16-${Date.now()}.jpg`, { type: 'image/jpeg' });
+                        await navigator.share({
+                            title: 'DACO Storymaker Pro - High Quality 9:16',
+                            text: appState.currentLang === 'en' ? 'High quality 9:16 Image from DACO Storymaker Pro' : 
+                                  appState.currentLang === 'fa' ? 'تصویر ۹:۱۶ با کیفیت بالا از DACO Storymaker Pro' : 
+                                  'صورة 9:16 عالية الجودة من DACO Storymaker Pro',
+                            files: [file]
+                        });
+                        showAlert(translations[appState.currentLang].saveSuccess);
+                        return;
+                    } catch (err) {
+                        if (err.name === 'AbortError') return;
+                    }
+                }
+                
+                await downloadBlob(blob, `daco-story-high-quality-9x16-${Date.now()}.jpg`);
+                showAlert(translations[appState.currentLang].saveSuccess);
+            } catch (error) {
+                console.error('Save error:', error);
+                showAlert(translations[appState.currentLang].saveError);
+            }
+        }
+
+        // FIXED: Guaranteed Transparent Background PNG Download
+        async function downloadTransparentText() {
+            if (appState.textObjects.length === 0 || !appState.textObjects.some(t => t.text.trim())) {
+                showAlert(translations[appState.currentLang].alertText);
+                return;
+            }
+            
+            try {
+                const blob = await generateTransparentBlob();
+                
+                if (navigator.share && blob) {
+                    try {
+                        const file = new File([blob], `daco-text-transparent-${Date.now()}.png`, { type: 'image/png' });
+                        await navigator.share({
+                            title: 'DACO Text PNG - Transparent',
+                            files: [file]
+                        });
+                        showAlert(translations[appState.currentLang].downloadSuccess);
+                        return;
+                    } catch (err) {
+                        if (err.name === 'AbortError') return;
+                    }
+                }
+                
+                if (blob) {
+                    await downloadBlob(blob, `daco-text-transparent-${Date.now()}.png`);
+                    showAlert(translations[appState.currentLang].downloadSuccess);
+                }
+            } catch (error) {
+                console.error('Download error:', error);
+                showAlert(translations[appState.currentLang].downloadError);
+            }
+        }
+
+        async function downloadBlob(blob, filename) {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        async function generateImageBlob(format = 'png', quality = 1.0) {
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            const baseWidth = DOM.canvas.width;
+            const baseHeight = DOM.canvas.height;
+            
+            const minResolution = 4096;
+            const scale = Math.max(1, minResolution / Math.max(baseWidth, baseHeight));
+            
+            tempCanvas.width = Math.round(baseWidth * scale);
+            tempCanvas.height = Math.round(baseHeight * scale);
+            
+            tempCtx.imageSmoothingEnabled = true;
+            tempCtx.imageSmoothingQuality = 'high';
+            tempCtx.scale(scale, scale);
+            
+            if (format === 'jpeg') {
+                tempCtx.fillStyle = "#FFFFFF";
+                tempCtx.fillRect(0, 0, baseWidth, baseHeight);
+            }
+            
+            if (appState.img) {
+                tempCtx.drawImage(appState.img, 0, 0, baseWidth, baseHeight);
+            }
+
+            tempCtx.save();
+            appState.textObjects.forEach(textObj => {
+                if (!textObj.text.trim()) return;
+                drawTextObjectToCanvas(tempCtx, textObj, baseWidth, baseHeight);
+            });
+            tempCtx.restore();
+            
+            return new Promise(resolve => {
+                tempCanvas.toBlob(resolve, `image/${format}`, quality);
+            });
+        }
+
+        // FIXED: Guaranteed Transparent PNG Generation
+        async function generateTransparentBlob() {
+            if (appState.textObjects.length === 0 || !appState.textObjects.some(t => t.text.trim())) return null;
+            
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+            let hasVisibleText = false;
+            
+            appState.textObjects.forEach(textObj => {
+                if (!textObj.text.trim()) return;
+                hasVisibleText = true;
+                minX = Math.min(minX, textObj.x);
+                minY = Math.min(minY, textObj.y);
+                maxX = Math.max(maxX, textObj.x + textObj.width);
+                maxY = Math.max(maxY, textObj.y + textObj.height);
+            });
+            
+            if (!hasVisibleText) return null;
+            
+            const padding = 60;
+            const canvasWidth = maxX - minX + padding * 2;
+            const canvasHeight = maxY - minY + padding * 2;
+            
+            const scale = Math.max(1, 2048 / Math.max(canvasWidth, canvasHeight));
+            
+            tempCanvas.width = Math.round(canvasWidth * scale);
+            tempCanvas.height = Math.round(canvasHeight * scale);
+            
+            // FIXED: Ensure transparent background - don't fill any background
+            tempCtx.imageSmoothingEnabled = true;
+            tempCtx.imageSmoothingQuality = 'high';
+            tempCtx.scale(scale, scale);
+            
+            tempCtx.save();
+            appState.textObjects.forEach(textObj => {
+                if (!textObj.text.trim()) return;
+                
+                const offsetTextObj = {
+                    ...textObj,
+                    x: textObj.x - minX + padding,
+                    y: textObj.y - minY + padding
+                };
+                
+                drawTextObjectToCanvas(tempCtx, offsetTextObj, DOM.canvas.width, DOM.canvas.height);
+            });
+            tempCtx.restore();
+            
+            return new Promise(resolve => {
+                tempCanvas.toBlob(resolve, 'image/png');
+            });
+        }
+
+        function drawTextObjectToCanvas(ctx, textObj, canvasWidth, canvasHeight) {
+            const textLines = textObj.text.split('\n');
+            const isRTLText = /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F]/.test(textObj.text);
+            
+            let baseFontSize = textObj.fontSize;
+            let originalFontSize = Math.max(16, (baseFontSize / 100) * Math.min(canvasWidth, canvasHeight) * 0.12);
+            
+            let maxTextWidth = 0;
+            textLines.forEach(line => {
+                const lineMetrics = measureText(line, textObj.font, originalFontSize);
+                maxTextWidth = Math.max(maxTextWidth, lineMetrics.width);
+            });
+            
+            if (maxTextWidth > canvasWidth * 0.95) {
+                originalFontSize *= (canvasWidth * 0.95) / maxTextWidth;
+            }
+
+            const finalFontSize = originalFontSize;
+            const finalLineHeight = finalFontSize * 1.3;
+            ctx.font = `${finalFontSize}px ${textObj.font}`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+
+            if (textObj.backdropOpacity > 0) {
+                const finalBackdropX = textObj.x;
+                const finalBackdropY = textObj.y;
+                const finalBackdropW = textObj.width;
+                const finalBackdropH = textObj.height;
+                const r = Math.max(0, (textObj.backdropRadius / 100) * Math.min(finalBackdropW, finalBackdropH) / 2);
+                
+                ctx.fillStyle = textObj.backdropColor;
+                ctx.globalAlpha = textObj.backdropOpacity;
+                
+                if (r > 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(finalBackdropX + r, finalBackdropY);
+                    ctx.arcTo(finalBackdropX + finalBackdropW, finalBackdropY, finalBackdropX + finalBackdropW, finalBackdropY + finalBackdropH, r);
+                    ctx.arcTo(finalBackdropX + finalBackdropW, finalBackdropY + finalBackdropH, finalBackdropX, finalBackdropY + finalBackdropH, r);
+                    ctx.arcTo(finalBackdropX, finalBackdropY + finalBackdropH, finalBackdropX, finalBackdropY, r);
+                    ctx.arcTo(finalBackdropX, finalBackdropY, finalBackdropX + finalBackdropW, finalBackdropY, r);
+                    ctx.closePath();
+                    ctx.fill();
+                } else {
+                    ctx.fillRect(finalBackdropX, finalBackdropY, finalBackdropW, finalBackdropH);
+                }
+            }
+
+            ctx.globalAlpha = 1;
+            const finalX = textObj.x + textObj.width / 2;
+            let finalY = textObj.y + (textObj.height / 2) - (((textLines.length - 1) * finalLineHeight) / 2);
+            
+            ctx.shadowColor = `rgba(0,0,0,0.5)`;
+            ctx.shadowBlur = Math.max(0, textObj.shadowBlur * (finalFontSize / 50));
+            ctx.strokeStyle = `rgb(0,0,0)`;
+            ctx.lineWidth = Math.max(0, textObj.strokeWidth * (finalFontSize / 50));
+            ctx.lineJoin = 'round';
+            ctx.lineCap = 'round';
+            
+            textLines.forEach(line => {
+                if (textObj.strokeWidth > 0) ctx.strokeText(line, finalX, finalY);
+                if (textObj.glowBlur > 0) {
+                    ctx.shadowColor = textObj.color;
+                    ctx.shadowBlur = Math.max(0, textObj.glowBlur * (finalFontSize / 50));
+                }
+                ctx.fillStyle = textObj.color;
+                ctx.globalAlpha = Math.max(0, Math.min(1, textObj.opacity));
+                
+                renderTextWithBiDiSupport(ctx, line, finalX, finalY, textObj.font, isRTLText);
+                
+                ctx.shadowBlur = Math.max(0, textObj.shadowBlur * (finalFontSize / 50));
+                ctx.shadowColor = `rgba(0,0,0,0.5)`;
+                finalY += finalLineHeight;
+            });
+        }
+
+        // FIXED: Event Listeners Setup with optimized slider handling
+        function setupEventListeners() {
+            console.log('🔧 Setting up event listeners...');
+
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('night-mode');
+            }
+            
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const handleDarkModeChange = (event) => {
+                document.body.classList.toggle('night-mode', event.matches);
+            };
+            darkModeMediaQuery.addEventListener('change', handleDarkModeChange);
+            appState.globalListeners.push({ element: darkModeMediaQuery, event: 'change', handler: handleDarkModeChange });
+
+            if (DOM.langSwitch) {
+                const handleLangSwitch = () => {
+                    const languages = ['en', 'fa', 'ar'];
+                    const currentIndex = languages.indexOf(appState.currentLang);
+                    const nextIndex = (currentIndex + 1) % languages.length;
+                    const nextLang = languages[nextIndex];
+                    
+                    switchLanguage(nextLang);
+                };
+                appState.addEventListener(DOM.langSwitch, 'click', handleLangSwitch);
+                console.log('✅ Language switch listener added');
+            }
+
+            if (DOM.themeToggle) {
+                const handleThemeToggle = () => {
+                    document.body.classList.toggle('night-mode');
+                    const sunIcon = DOM.themeToggle.querySelector('.sun-icon');
+                    const moonIcon = DOM.themeToggle.querySelector('.moon-icon');
+                    
+                    if (document.body.classList.contains('night-mode')) {
+                        if (sunIcon) sunIcon.style.display = 'none';
+                        if (moonIcon) moonIcon.style.display = 'block';
+                    } else {
+                        if (sunIcon) sunIcon.style.display = 'block';
+                        if (moonIcon) moonIcon.style.display = 'none';
+                    }
+                };
+                appState.addEventListener(DOM.themeToggle, 'click', handleThemeToggle);
+                console.log('✅ Theme toggle listener added');
+            }
+
+            if (DOM.uploadImageBtn && DOM.imageInput) {
+                const handleUploadClick = () => {
+                    DOM.imageInput.click();
+                };
+                appState.addEventListener(DOM.uploadImageBtn, 'click', handleUploadClick);
+                console.log('✅ Upload image button listener added');
+            }
+
+            if (DOM.controlIcons && DOM.controlIcons.length > 0) {
+                DOM.controlIcons.forEach(icon => {
+                    const handleControlIconClick = () => {
+                        const panelId = icon.dataset.panel;
+                        if (panelId) {
+                            icon.classList.contains('active') ? closePanel(panelId) : openPanel(panelId);
+                        }
+                    };
+                    appState.addEventListener(icon, 'click', handleControlIconClick);
+                });
+                console.log(`✅ ${DOM.controlIcons.length} control icon listeners added`);
+            }
+
+            if (DOM.closePanelBtns && DOM.closePanelBtns.length > 0) {
+                DOM.closePanelBtns.forEach(btn => {
+                    const handleClosePanelClick = () => {
+                        const panelId = btn.dataset.close;
+                        if (panelId) {
+                            closePanel(panelId);
+                        }
+                    };
+                    appState.addEventListener(btn, 'click', handleClosePanelClick);
+                });
+                console.log(`✅ ${DOM.closePanelBtns.length} close panel button listeners added`);
+            }
+
+            const handleDocumentClick = (e) => { 
+                if (!e.target.closest('.accordion-panel, .control-icon')) { 
+                    DOM.accordionPanels.forEach(p => p.classList.remove('active')); 
+                    DOM.controlIcons.forEach(i => i.classList.remove('active')); 
+                } 
+            };
+            appState.addEventListener(document, 'click', handleDocumentClick);
+
+            if (DOM.imageInput) {
+                const handleImageInput = (e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                        if (file.size > 10 * 1024 * 1024) {
+                            showAlert(appState.currentLang === 'en' ? 'File size should not exceed 10MB' : 
+                                     appState.currentLang === 'fa' ? 'حجم فایل نباید بیشتر از ۱۰ مگابایت باشد' : 
+                                     'يجب ألا يتجاوز حجم الملف 10 ميجابايت');
+                            return;
+                        }
+                        initializeCropModal(file);
+                    }
+                };
+                appState.addEventListener(DOM.imageInput, 'change', handleImageInput);
+                console.log('✅ Image input listener added');
+            }
+
+            if (DOM.deleteImageBtn) {
+                const handleDeleteImage = (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    appState.img = null;
+                    appState.originalImageData = null;
+                    DOM.deleteImageBtn.style.display = 'none';
+                    if (DOM.photoPlaceholder) DOM.photoPlaceholder.style.display = 'flex';
+                    if (DOM.imageInput) DOM.imageInput.value = '';
+                    scheduleDraw();
+                };
+                appState.addEventListener(DOM.deleteImageBtn, 'click', handleDeleteImage);
+                console.log('✅ Delete image button listener added');
+            }
+
+            if (DOM.fontInput) {
+                const handleFontInput = (e) => {
+                    const file = e.target.files[0];
+                    if (!file || appState.customFontsCount >= appState.maxCustomFonts) {
+                        showAlert(translations[appState.currentLang].alertFont);
+                        return;
+                    }
+                    
+                    if (file.size > 5 * 1024 * 1024) {
+                        showAlert(appState.currentLang === 'en' ? 'Font size should not exceed 5MB' : 
+                                 appState.currentLang === 'fa' ? 'حجم فونت نباید بیشتر از ۵ مگابایت باشد' : 
+                                 'يجب ألا يتجاوز حجم الخط 5 ميجابايت');
+                        return;
+                    }
+                    
+                    const fontName = `CustomFont_${Date.now()}`;
+                    
+                    const reader = new FileReader();
+                    reader.onload = (ev) => {
+                        const font = new FontFace(fontName, ev.target.result);
+                        font.load().then(() => {
+                            document.fonts.add(font);
+                            const option = new Option(file.name.split('.')[0], fontName);
+                            if (DOM.fontSelector) DOM.fontSelector.add(option);
+                            appState.customFontsCount++;
+                            if (DOM.fontSelector) DOM.fontSelector.value = fontName;
+                            appState.currentFont = fontName;
+                            if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                                appState.textObjects[appState.selectedTextIndex].font = fontName;
+                            }
+                            scheduleDraw();
+                            showAlert(translations[appState.currentLang].alertFontSuccess(file.name));
+                        }).catch(error => {
+                            console.error('Font loading error:', error);
+                            showAlert(translations[appState.currentLang].alertFontError(error.message));
+                        });
+                    };
+                    reader.onerror = () => {
+                        showAlert(appState.currentLang === 'en' ? 'Error reading font file' : 
+                                 appState.currentLang === 'fa' ? 'خطا در خواندن فایل فونت' : 
+                                 'خطأ في قراءة ملف الخط');
+                    };
+                    reader.readAsArrayBuffer(file);
+                };
+                appState.addEventListener(DOM.fontInput, 'change', handleFontInput);
+                console.log('✅ Font input listener added');
+            }
+
+            if (DOM.canvas) {
+                const handleCanvasClick = (e) => { 
+                    if (!document.querySelector('.accordion-panel.active')) { 
+                        openPanel('text'); 
+                    }
+                    
+                    const canvasPos = getCanvasPos(e);
+                    let clickedTextIndex = -1;
+                    
+                    for (let i = appState.textObjects.length - 1; i >= 0; i--) {
+                        const textObj = appState.textObjects[i];
+                        if (canvasPos.x >= textObj.x && canvasPos.x <= textObj.x + textObj.width &&
+                            canvasPos.y >= textObj.y && canvasPos.y <= textObj.y + textObj.height) {
+                            clickedTextIndex = i;
+                            break;
+                        }
+                    }
+                     
+                    if (clickedTextIndex >= 0) {
+                        selectTextObject(clickedTextIndex);
+                    }
+                };
+
+                const handleCanvasDoubleClick = (e) => {
+                    const canvasPos = getCanvasPos(e);
+                    let clickedTextIndex = -1;
+                    
+                    for (let i = appState.textObjects.length - 1; i >= 0; i--) {
+                        const textObj = appState.textObjects[i];
+                        if (canvasPos.x >= textObj.x && canvasPos.x <= textObj.x + textObj.width &&
+                            canvasPos.y >= textObj.y && canvasPos.y <= textObj.y + textObj.height) {
+                            clickedTextIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    if (clickedTextIndex === -1) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        centerCanvas();
+                    } else {
+                        selectTextObject(clickedTextIndex);
+                        const textPanel = document.getElementById('textPanel');
+                        if (textPanel && !textPanel.classList.contains('active')) {
+                            openPanel('text');
+                        }
+                    }
+                };
+
+                const handleCanvasTouchEnd = (e) => {
+                    const now = Date.now();
+                    if (now - appState.lastCanvasTouchTime < 300) {
+                        appState.canvasTouchCount++;
+                        if (appState.canvasTouchCount === 2) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const canvasPos = getCanvasPos(e.changedTouches[0]);
+                            let clickedTextIndex = -1;
+                            
+                            for (let i = appState.textObjects.length - 1; i >= 0; i--) {
+                                const textObj = appState.textObjects[i];
+                                if (canvasPos.x >= textObj.x && canvasPos.x <= textObj.x + textObj.width &&
+                                    canvasPos.y >= textObj.y && canvasPos.y <= textObj.y + textObj.height) {
+                                    clickedTextIndex = i;
+                                    break;
+                                }
+                            }
+                            
+                            if (clickedTextIndex === -1) {
+                                centerCanvas();
+                            } else {
+                                selectTextObject(clickedTextIndex);
+                                const textPanel = document.getElementById('textPanel');
+                                if (textPanel && !textPanel.classList.contains('active')) {
+                                    openPanel('text');
+                                }
+                            }
+                            appState.canvasTouchCount = 0;
+                        }
+                    } else {
+                        appState.canvasTouchCount = 1;
+                    }
+                    appState.lastCanvasTouchTime = now;
+                };
+                
+                appState.addEventListener(DOM.canvas, 'click', handleCanvasClick);
+                appState.addEventListener(DOM.canvas, 'dblclick', handleCanvasDoubleClick);
+                appState.addEventListener(DOM.canvas, 'touchend', handleCanvasTouchEnd);
+                console.log('✅ Canvas interaction listeners added');
+            }
+
+            if (DOM.canvasWrapper) {
+                appState.addEventListener(DOM.canvasWrapper, 'mousedown', handleStart);
+                appState.addEventListener(DOM.canvasWrapper, 'touchstart', handleStart, { passive: false });
+                console.log('✅ Canvas wrapper interaction listeners added');
+            }
+
+            appState.addEventListener(window, 'mousemove', handleMove);
+            appState.addEventListener(window, 'mouseup', handleEnd);
+            appState.addEventListener(window, 'touchmove', handleMove, { passive: false });
+            appState.addEventListener(window, 'touchend', handleEnd);
+            appState.addEventListener(window, 'touchcancel', handleEnd);
+
+            if (DOM.fontSelector) {
+                const handleFontSelectorChange = (e) => { 
+                    appState.currentFont = e.target.value; 
+                    if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                        appState.textObjects[appState.selectedTextIndex].font = e.target.value;
+                    }
+                    scheduleDraw(); 
+                };
+                appState.addEventListener(DOM.fontSelector, 'change', handleFontSelectorChange);
+                console.log('✅ Font selector listener added');
+            }
+
+            // FIXED: Optimized slider handling using scheduleDraw
+            const sliderConfigs = [
+                { element: DOM.fontSizeSlider, property: 'fontSize', parser: v => parseInt(v, 10) },
+                { element: DOM.opacitySlider, property: 'opacity', parser: v => parseInt(v, 10) / 100 },
+                { element: DOM.shadowSlider, property: 'shadowBlur', parser: v => parseInt(v, 10) },
+                { element: DOM.strokeSlider, property: 'strokeWidth', parser: v => parseInt(v, 10) },
+                { element: DOM.glowSlider, property: 'glowBlur', parser: v => parseInt(v, 10) },
+                { element: DOM.backdropOpacitySlider, property: 'backdropOpacity', parser: v => parseInt(v, 10) / 100 },
+                { element: DOM.backdropRadiusSlider, property: 'backdropRadius', parser: v => parseInt(v, 10) },
+                { element: DOM.backdropWidthSlider, property: 'backdropWidthPercentage', parser: v => parseInt(v, 10) },
+                { element: DOM.backdropHeightSlider, property: 'backdropHeightPercentage', parser: v => parseInt(v, 10) }
+            ];
+
+            sliderConfigs.forEach(({ element, property, parser }) => {
+                if (element) {
+                    const handleSliderInput = (e) => {
+                        if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                            appState.textObjects[appState.selectedTextIndex][property] = parser(e.target.value);
+                        }
+                        updateSliderValues(); 
+                        scheduleDraw(); // FIXED: Use scheduled draw instead of immediate
+                    };
+                    appState.addEventListener(element, 'input', handleSliderInput);
+                }
+            });
+            console.log('✅ Optimized slider listeners added');
+
+            if (DOM.addFontPanelBtn) {
+                appState.addEventListener(DOM.addFontPanelBtn, 'click', addFontPanel);
+                console.log('✅ Add font panel button listener added');
+            }
+
+            if (DOM.downloadHeaderBtn && DOM.downloadModal) {
+                const handleDownloadHeaderClick = () => {
+                    DOM.downloadModal.classList.add('active');
+                };
+                appState.addEventListener(DOM.downloadHeaderBtn, 'click', handleDownloadHeaderClick);
+                console.log('✅ Download header button listener added');
+            }
+
+            if (DOM.closeDownloadModal && DOM.downloadModal) {
+                const handleCloseDownloadModal = () => {
+                    DOM.downloadModal.classList.remove('active');
+                };
+                
+                const handleDownloadModalClick = (e) => {
+                    if (e.target === DOM.downloadModal) {
+                        DOM.downloadModal.classList.remove('active');
+                    }
+                };
+
+                appState.addEventListener(DOM.closeDownloadModal, 'click', handleCloseDownloadModal);
+                appState.addEventListener(DOM.downloadModal, 'click', handleDownloadModalClick);
+                console.log('✅ Download modal control listeners added');
+            }
+
+            if (DOM.saveToGalleryCard && DOM.downloadModal) {
+                const handleSaveToGallery = () => {
+                    DOM.downloadModal.classList.remove('active');
+                    saveToGallery();
+                };
+                appState.addEventListener(DOM.saveToGalleryCard, 'click', handleSaveToGallery);
+                console.log('✅ Save to gallery card listener added');
+            }
+            
+            if (DOM.downloadTransparentCard && DOM.downloadModal) {
+                const handleDownloadTransparent = () => {
+                    DOM.downloadModal.classList.remove('active');
+                    downloadTransparentText();
+                };
+                appState.addEventListener(DOM.downloadTransparentCard, 'click', handleDownloadTransparent);
+                console.log('✅ Download transparent card listener added');
+            }
+
+            if (DOM.cropViewport) {
+                appState.addEventListener(DOM.cropViewport, 'mousedown', handleCropStart);
+                appState.addEventListener(DOM.cropViewport, 'mousemove', handleCropMove);
+                appState.addEventListener(DOM.cropViewport, 'mouseup', handleCropEnd);
+                appState.addEventListener(DOM.cropViewport, 'wheel', handleCropWheel);
+                appState.addEventListener(DOM.cropViewport, 'touchstart', handleCropStart, { passive: false });
+                appState.addEventListener(DOM.cropViewport, 'touchmove', handleCropMove, { passive: false });
+                appState.addEventListener(DOM.cropViewport, 'touchend', handleCropEnd);
+                console.log('✅ Crop viewport interaction listeners added');
+            }
+
+            if (DOM.zoomIn) {
+                const handleZoomIn = () => {
+                    cropState.scale = Math.min(cropState.maxScale, cropState.scale * 1.2);
+                    constrainCropPosition();
+                    updateCropImageDisplay();
+                };
+                appState.addEventListener(DOM.zoomIn, 'click', handleZoomIn);
+                console.log('✅ Zoom in button listener added');
+            }
+
+            if (DOM.zoomOut) {
+                const handleZoomOut = () => {
+                    cropState.scale = Math.max(cropState.minScale, cropState.scale / 1.2);
+                    constrainCropPosition();
+                    updateCropImageDisplay();
+                };
+                appState.addEventListener(DOM.zoomOut, 'click', handleZoomOut);
+                console.log('✅ Zoom out button listener added');
+            }
+
+            if (DOM.cropCancel && DOM.cropModal) {
+                const handleCropCancel = () => {
+                    DOM.cropModal.classList.remove('active');
+                    cropState.reset();
+                };
+                appState.addEventListener(DOM.cropCancel, 'click', handleCropCancel);
+                console.log('✅ Crop cancel button listener added');
+            }
+
+            if (DOM.cropConfirm) {
+                appState.addEventListener(DOM.cropConfirm, 'click', applyCrop);
+                console.log('✅ Crop confirm button listener added');
+            }
+
+            const handleWindowResize = () => {
+                setTimeout(() => {
+                    if (DOM.cropModal && DOM.cropModal.classList.contains('active')) {
+                        setupCrop();
+                    }
+                    updateCanvasBounds();
+                    scheduleDraw();
+                    lockOrientation();
+                }, 100);
+            };
+            appState.addEventListener(window, 'resize', handleWindowResize);
+
+            console.log('✅ All event listeners setup completed with optimizations');
+        }
+
+        // FIXED: Initialize Application
+        async function initializeApp() {
+            console.log('🚀 DACO Storymaker Pro - Version 3.0.0 starting');
+            
+            try {
+                if (!validateDOMElements()) {
+                    console.error('❌ Critical DOM elements missing, cannot continue');
+                    return;
+                }
+
+                await showDACOLoading();
+                
+                lockOrientation();
+                
+                setTimeout(() => {
+                    try {
+                        createColorGrid(DOM.textColorGrid, (color) => {
+                            if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                                appState.textObjects[appState.selectedTextIndex].color = color;
+                                scheduleDraw();
+                            }
+                        });
+                        
+                        createColorGrid(DOM.bgColorGrid, (color) => {
+                            if (appState.selectedTextIndex >= 0 && appState.textObjects[appState.selectedTextIndex]) {
+                                appState.textObjects[appState.selectedTextIndex].backdropColor = color;
+                                scheduleDraw();
+                            }
+                        });
+
+                        setupEventListeners();
+                        
+                        const targetRatio = 9/16;
+                        const containerRect = document.querySelector('.canvas-container').getBoundingClientRect();
+                        
+                        let canvasWidth, canvasHeight;
+                        const containerAspect = containerRect.width / containerRect.height;
+                        
+                        if (targetRatio > containerAspect) {
+                            canvasWidth = Math.min(containerRect.width * 0.7, 350);
+                            canvasHeight = canvasWidth / targetRatio;
+                        } else {
+                            canvasHeight = Math.min(containerRect.height * 0.7, 500);
+                            canvasWidth = canvasHeight * targetRatio;
+                        }
+                        
+                        DOM.canvas.width = canvasWidth;
+                        DOM.canvas.height = canvasHeight;
+                        if (DOM.canvasWrapper) {
+                            DOM.canvasWrapper.style.width = canvasWidth + 'px';
+                            DOM.canvasWrapper.style.height = canvasHeight + 'px';
+                        }
+                        
+                        updateCanvasBounds();
+                        addFontPanel();
+                        scheduleDraw();
+                        
+                        console.log('✅ DACO Storymaker Pro initialized successfully');
+                    } catch (error) {
+                        console.error('❌ Error during UI setup:', error);
+                        showAlert('Error setting up the application. Please refresh the page.');
+                    }
+                }, 3800);
+            } catch (error) {
+                console.error('❌ Critical error during app initialization:', error);
+                showAlert('Failed to initialize the application. Please refresh the page.');
+            }
+        }
+
+        // FIXED: Cleanup on page unload
+        const handleBeforeUnload = () => {
+            appState.cleanup();
+        };
+        appState.addEventListener(window, 'beforeunload', handleBeforeUnload);
+
+        // Start the application when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
+        }
+
+    </script>
+</body>
+</html>
