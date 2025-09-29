@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آفلاین - DACO Storymaker Pro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #5D5CDE, #3D3BAA);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .offline-container {
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .features {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .features h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .features ul {
+            list-style: none;
+            text-align: right;
+        }
+        
+        .features li {
+            margin: 0.5rem 0;
+            padding-right: 1.5rem;
+            position: relative;
+        }
+        
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: #48BB78;
+            font-weight: bold;
+        }
+        
+        .retry-btn {
+            background: white;
+            color: #5D5CDE;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .app-info {
+            margin-top: 2rem;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📡</div>
+        <h1>شما آفلاین هستید</h1>
+        <p>اتصال اینترنت شما قطع شده است، اما هنوز می‌توانید از برخی ویژگی‌های DACO Storymaker Pro استفاده کنید.</p>
+        
+        <div class="features">
+            <h3>قابلیت‌های در دسترس:</h3>
+            <ul>
+                <li>ویرایش متن‌های موجود</li>
+                <li>تغییر فونت و رنگ</li>
+                <li>اعمال جلوه‌های متنی</li>
+                <li>تنظیم موقعیت عناصر</li>
+                <li>ذخیره محلی پروژه</li>
+            </ul>
+        </div>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            🔄 تلاش مجدد
+        </button>
+        
+        <div class="app-info">
+            DACO Storymaker Pro v3.0.0<br>
+            Progressive Web App
+        </div>
+    </div>
+
+    <script>
+        // Check online status and auto-reload when back online
+        window.addEventListener('online', () => {
+            window.location.href = './';
+        });
+
+        // Update UI based on connection status
+        function updateConnectionStatus() {
+            if (navigator.onLine) {
+                window.location.href = './';
+            }
+        }
+
+        // Check every 5 seconds
+        setInterval(updateConnectionStatus, 5000);
+        
+        // Initial check
+        updateConnectionStatus();
+    </script>
+</body>
+</html>

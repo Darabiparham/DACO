@@ -1,0 +1,151 @@
+{
+  "name": "DACO Storymaker Pro - ساخت استوری حرفه‌ای",
+  "short_name": "DACO Storymaker",
+  "description": "Professional Instagram Story Creator with advanced Persian text support | ساخت استوری های حرفه ای اینستاگرام با پشتیبانی کامل از متن فارسی",
+  "version": "3.0.0",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#5D5CDE",
+  "background_color": "#FFFFFF",
+  "lang": "fa",
+  "dir": "rtl",
+  "categories": ["productivity", "photo", "social", "graphics", "design"],
+  "screenshots": [
+    {
+      "src": "./images/screenshot-narrow.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Main interface on mobile"
+    },
+    {
+      "src": "./images/screenshot-wide.png", 
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Main interface on desktop"
+    }
+  ],
+  "icons": [
+    {
+      "src": "./icons/android-icon-36x36.png",
+      "sizes": "36x36",
+      "type": "image/png",
+      "density": "0.75"
+    },
+    {
+      "src": "./icons/android-icon-48x48.png",
+      "sizes": "48x48", 
+      "type": "image/png",
+      "density": "1.0"
+    },
+    {
+      "src": "./icons/android-icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png", 
+      "density": "1.5"
+    },
+    {
+      "src": "./icons/android-icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "density": "2.0"
+    },
+    {
+      "src": "./icons/android-icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "density": "3.0"
+    },
+    {
+      "src": "./icons/android-icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "density": "4.0",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/android-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "ساخت استوری جدید",
+      "short_name": "استوری جدید",
+      "description": "شروع ساخت استوری جدید",
+      "url": "./?action=new",
+      "icons": [
+        {
+          "src": "./icons/shortcut-new.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "گالری آثار",
+      "short_name": "گالری", 
+      "description": "مشاهده آثار ذخیره شده",
+      "url": "./?action=gallery",
+      "icons": [
+        {
+          "src": "./icons/shortcut-gallery.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "قالب‌ها",
+      "short_name": "قالب‌ها",
+      "description": "استفاده از قالب‌های آماده",
+      "url": "./?action=templates", 
+      "icons": [
+        {
+          "src": "./icons/shortcut-templates.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "./share",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "images",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "./open",
+      "accept": {
+        "image/*": [".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp", ".svg"]
+      }
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+dacostory",
+      "url": "./?story=%s"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
+}
